@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 
-#include "<string.h>"
+
 #include "visualizer.h"
 #include "led_test.h"
 
@@ -82,11 +82,17 @@ static keyframe_animation_t color_animation = {
 
 // The LCD animation alternates between the layer name display and a
 // bitmap that displays all active layers
+// static keyframe_animation_t lcd_animation = {
+//     .num_frames = 2,
+//     .loop = true,
+//     .frame_lengths = {gfxMillisecondsToTicks(2000), gfxMillisecondsToTicks(2000)},
+//     .frame_functions = {keyframe_display_layer_text, keyframe_display_layer_bitmap},
+// };
 static keyframe_animation_t lcd_animation = {
-    .num_frames = 2,
-    .loop = true,
-    .frame_lengths = {gfxMillisecondsToTicks(2000), gfxMillisecondsToTicks(2000)},
-    .frame_functions = {keyframe_display_layer_text, keyframe_display_layer_bitmap},
+    .num_frames = 1,
+    .loop = false,
+    .frame_lengths = {0},
+    .frame_functions = {keyframe_display_layer_text},
 };
 
 static keyframe_animation_t suspend_animation = {
