@@ -26,10 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #error This visualizer needs that LCD is enabled
 #endif
 
+
+#include "<string.h>"
 #include "visualizer.h"
 #include "led_test.h"
 
-static const char* welcome_text[] = {"QMK - r2d2rogers", "Infinity Ergodox"};
+static const char* welcome_text[] = {"LESHOW", "Infinity Ergodox"};
 
 // Just an example how to write custom keyframe functions, we could have moved
 // all this into the init function
@@ -114,40 +116,83 @@ static keyframe_animation_t resume_animation = {
 void initialize_user_visualizer(visualizer_state_t* state) {
     // The brightness will be dynamically adjustable in the future
     // But for now, change it here.
-    lcd_backlight_brightness(0x50);
+    lcd_backlight_brightness(0xFF);
     state->current_lcd_color = LCD_COLOR(0x00, 0x00, 0xFF);
     state->target_lcd_color = LCD_COLOR(0x10, 0xFF, 0xFF);
     start_keyframe_animation(&startup_animation);
     start_keyframe_animation(&led_test_animation);
 }
+#define IS_LAYER_ACTIVE(state, layer)  (state & (1UL << (layer)))
 
 void update_user_visualizer_state(visualizer_state_t* state) {
     // Add more tests, change the colors and layer texts here
-    // Usually you want to check the high bits (higher layers first)
+    // Usually you want to check the high bits (higher larers first)
     // because that's the order layers are processed for keypresses
     // You can for check for example:
     // state->status.layer
     // state->status.default_layer
     // state->status.leds (see led.h for available statuses)
-    if (state->status.layer & 0x8) {
-        state->target_lcd_color = LCD_COLOR(0xC0, 0xB0, 0xFF);
-        state->layer_text = "Numpad";
+    static char status[16];
+    static char blank_status[16] = "L: 0           ";
+    
+    strcpy(status, blank_status);
+
+    int hue = 0xA0;
+    int sat = 0x50;
+    int intensity = 0x90;
+
+    if (IS_LAYER_ACTIVE(state->status.layer, 1)) {
+        status[3] = '1';
+        status[5] = 'F';
+        status[6] = 'n';
+        hue = 0x7D; sat = 0xFF; intensity = 0xFF;
     }
-    else if (state->status.layer & 0x4) {
-        state->target_lcd_color = LCD_COLOR(0, 0xB0, 0xFF);
-        state->layer_text = "KBD functions";
+    if (IS_LAYER_ACTIVE(state->status.layer, 2)) {
+        status[3] = '2';
+        status[5] = 'N';
+        status[6] = 'u';
+        status[7] = 'm';
+        hue = 0x90; sat = 0xFF; intensity = 0xFF;
     }
-    else if (state->status.layer & 0x2) {
-        state->target_lcd_color = LCD_COLOR(0x80, 0xB0, 0xFF);
-        state->layer_text = "Function keys";
+    if (IS_LAYER_ACTIVE(state->status.layer, 3)) {
+        status[3] = '3';
+        status[5] = 'A';
+        status[6] = 'r';
+        status[7] = 'r';
+        status[8] = 'o';
+        status[9] = 'w';
+        hue = 0x60; sat = 0xFF; intensity = 0xFF;
     }
-    else {
-        state->target_lcd_color = LCD_COLOR(0x40, 0xB0, 0xFF);
-        state->layer_text = "Default";
+    if (IS_LAYER_ACTIVE(state->status.layer, 4)) {
+        status[3] = '4';
+        status[5] = 'M';
+        status[6] = 'e';
+        status[7] = 'd';
+        status[8] = 'i';
+        status[9] = 'a';
+        hue = 0xC0; sat = 0xFF; intensity = 0xD0;
     }
-    // You can also stop existing animations, and start your custom ones here
+//     if (state->status.layer & 0x8) {
+//         state->target_lcd_color = LCD_COLOR(0xC0, 0x90, 0x90);
+//         state->layer_text = "Arrow";
+//     }
+//     else if (state->status.layer & 0x4) {
+//         state->target_lcd_color = LCD_COLOR(0x90, 0x90, 0x90);
+//         state->layer_text = "Numpad";
+//     }
+//     else if (state->status.layer & 0x2) {
+//         state->target_lcd_color = LCD_COLOR(0x60, 0x90, 0x90);
+//         state->layer_text = "Function keys";
+//     }
+//     else {
+//         state->target_lcd_color = LCD_COLOR(0x20, 0x90, 0x90);
+//         state->layer_text = "Default";
+//     }
+//     // You can also stop existing animations, and start your custom ones here
     // remember that you should normally have only one animation for the LCD
     // and one for the background. But you can also combine them if you want.
+    state->target_lcd_color = LCD_COLOR(hue, sat, intensity);
+    state->layer_text = status;
     start_keyframe_animation(&lcd_animation);
     start_keyframe_animation(&color_animation);
 }
