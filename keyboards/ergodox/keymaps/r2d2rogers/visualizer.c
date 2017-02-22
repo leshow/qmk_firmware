@@ -158,7 +158,7 @@ void update_user_visualizer_state(visualizer_state_t* state) {
         status[5] = 'N';
         status[6] = 'u';
         status[7] = 'm';
-        hue = 0x90; sat = 0xFF; intensity = 0xFF;
+        hue = 0x10; sat = 0xFF; intensity = 0xFF;
     }
     if (IS_LAYER_ACTIVE(state->status.layer, 3)) {
         status[3] = '3';
