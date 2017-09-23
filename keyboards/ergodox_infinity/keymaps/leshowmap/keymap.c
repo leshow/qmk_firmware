@@ -151,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |  Home  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |  PgUp  |    
+ * |        |      |      |      |      |      |      |           |      |      | home | pgup | pgdwn| end  |  PgUp  |    
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |      | *L3* |------|           |------|      |  <-  | Dwn  | Up   | ->   | PgDwn  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -176,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                 // right hand
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME,
-                                KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP,
+                                KC_TRNS, KC_TRNS, KC_HOME, KC_PGUP, KC_PGDOWN, KC_END, KC_PGUP,
                                 KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_PGDOWN,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
