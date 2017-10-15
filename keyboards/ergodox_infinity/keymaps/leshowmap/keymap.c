@@ -53,15 +53,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // If it accepts an argument (i.e, is a function), it doesn't need KC_.
         // Otherwise, it needs KC_*
         [BASE] = LAYOUT_ergodox( // layer 0 : default
-            TT(4), KC_1, KC_2, KC_3, KC_4, KC_5, KC_ESCAPE,
+            TT(4), KC_1, KC_2, KC_3, KC_4, KC_5, KC_ESC,
             KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T, M(LAUNCH_TERM),
             GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(3, KC_F), KC_G,
             KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, KC_V, KC_B, SCMD_T(KC_CAPSLOCK),
             MEH_T(KC_NO), KC_LALT, KC_DOWN, KC_UP, KC_LCTL,
             // thumb
-            KC_INSERT, KC_CAPSLOCK, KC_HOME, LT(1, KC_BSPACE), LT(2, KC_DELETE), KC_END,
+            KC_INSERT, KC_CAPSLOCK, KC_HOME, LT(1, KC_BSPC), LT(2, KC_DEL), KC_END,
             // right hand
-            KC_ESCAPE, KC_6, KC_7, KC_8, KC_9, KC_0, TT(4),
+            KC_ESC, KC_6, KC_7, KC_8, KC_9, KC_0, TT(4),
             M(LAUNCH_ROFI), KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPACE,
             KC_H, KC_J, KC_K, KC_L, KC_SCOLON, GUI_T(KC_QUOTE),
             SCMD_T(KC_CAPSLOCK), KC_N, KC_M, KC_COMMA, ALT_T(KC_DOT), CTL_T(KC_SLASH), KC_RSPC,
@@ -215,12 +215,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, KC_AUDIO_MUTE,
+                                KC_MEDIA_PREV_TRACK, KC_VOLD, KC_VOLU, KC_MEDIA_NEXT_TRACK, KC_AUDIO_MUTE,
                                 //thumb
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE)};
 
 const uint16_t PROGMEM fn_actions[] = {
-        [1] = ACTION_LAYER_TAP_TOGGLE(SYMB) // FN1 - Momentary Layer 1 (Symbols)
+        [1] = ACTION_LAYER_TAP_TOGGLE(SYMB),  // FN1 - Momentary Layer 1 (Symbols)
+        [2] = ACTION_LAYER_TAP_TOGGLE(NUMSE), // FN1 - Momentary Layer 1 (Symbols)
+        [3] = ACTION_LAYER_TAP_TOGGLE(ARRW),  // FN1 - Momentary Layer 1 (Symbols)
+        [4] = ACTION_LAYER_TAP_TOGGLE(MDIA)   // FN1 - Momentary Layer 1 (Symbols)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
