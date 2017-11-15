@@ -22,34 +22,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // stopped. This can be done by either double buffering it or by using constant strings
 static void get_visualizer_layer_and_color(visualizer_state_t *state)
 {
-    uint8_t saturation = 60;
-    if (state->status.leds & (1u << USB_LED_CAPS_LOCK))
-    {
-        saturation = 255;
-    }
-    if (IS_LAYER_ACTIVE(state->status.layer, 4))
-    {
-        state->target_lcd_color = LCD_COLOR(192, saturation, 0xFF);
-        state->layer_text = "Media";
-    }
-    else if (IS_LAYER_ACTIVE(state->status.layer, 3))
-    {
-        state->target_lcd_color = LCD_COLOR(96, saturation, 0xFF);
-        state->layer_text = "Arrow";
-    }
-    else if (IS_LAYER_ACTIVE(state->status.layer, 2))
-    {
-        state->target_lcd_color = LCD_COLOR(16, saturation, 0xFF);
-        state->layer_text = "Num & Mouse";
-    }
-    else if (IS_LAYER_ACTIVE(state->status.layer, 1))
-    {
-        state->target_lcd_color = LCD_COLOR(168, saturation, 0xFF);
-        state->layer_text = "Symbol";
-    }
-    else
-    {
-        state->target_lcd_color = LCD_COLOR(84, saturation, 0xFF);
-        state->layer_text = "Default";
-    }
+  uint8_t saturation = 60;
+  if (state->status.leds & (1u << USB_LED_CAPS_LOCK))
+  {
+    saturation = 255;
+  }
+  if (IS_LAYER_ACTIVE(state->status.layer, 4))
+  {
+    state->target_lcd_color = LCD_COLOR(192, saturation, 0xFF);
+    state->layer_text = "Media";
+  }
+  else if (IS_LAYER_ACTIVE(state->status.layer, 3))
+  {
+    state->target_lcd_color = LCD_COLOR(96, saturation, 0xFF);
+    state->layer_text = "Arrow";
+  }
+  else if (IS_LAYER_ACTIVE(state->status.layer, 2) || IS_LAYER_ACTIVE(state->status.layer, 5))
+  {
+    state->target_lcd_color = LCD_COLOR(16, saturation, 0xFF);
+    state->layer_text = "Num & Mouse";
+  }
+  else if (IS_LAYER_ACTIVE(state->status.layer, 1))
+  {
+    state->target_lcd_color = LCD_COLOR(168, saturation, 0xFF);
+    state->layer_text = "Symbol";
+  }
+  else
+  {
+    state->target_lcd_color = LCD_COLOR(84, saturation, 0xFF);
+    state->layer_text = "Default";
+  }
 }
