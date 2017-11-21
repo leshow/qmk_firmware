@@ -36,9 +36,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Del    |   Q  |   W  |   E  |   R  |   T  | TERM |           |  RFI |   Y  |   U  |   I  |   O  |   P  |  Bksp  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | Tab/Cmd|   A  |   S  |   D  | F/L3 |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2| '/ Cmd | // TODO: think about using ; as the L1 toggle
+ * | Tab/Cmd|   A  |   S  |   D  | F/L3 |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | '/ Cmd | // TODO: think about using ; as the L1 toggle
  * |--------+------+------+------+------+------| SCMD |           | SCMD |------+------+------+------+------+--------|
- * | (/LShf |Z/Ctrl|   X  |   C  |   V  |   B  | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
+ * | (/LShf |Z/Ctrl|   X  |   C  |   V  | B/L2 | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | CSL3 |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | CSL3 |
  *   `----------------------------------'                                       `----------------------------------'
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | VolM |       | Vol+ |        |      |
  *                                 |Backsp|Delete|------|       |------| Enter  |Space |
- *                                 | /L1  | /L2  | Pl/Ps|       | Vol- | /Shift | /L1  |
+ *                                 | /L1  | /Shft| Pl/Ps|       | Vol- | /Shift | /L1  |
  *                                 `--------------------'       `----------------------'
  */
 
@@ -57,14 +57,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(4), KC_1, KC_2, KC_3, KC_4, KC_5, KC_ESC,
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T, M(LAUNCH_TERM),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(3, KC_F), KC_G,
-        KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, KC_V, KC_B, SCMD_T(KC_CAPSLOCK),
+        KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, KC_V, LT(2, KC_B), SCMD_T(KC_CAPSLOCK),
         MEH_T(KC_NO), KC_LALT, KC_DOWN, KC_UP, KC_LCTL,
         // thumb
-        KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(1, KC_BSPC), LT(2, KC_DEL), KC_MEDIA_PLAY_PAUSE,
+        KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(1, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
         // right hand
         KC_ESC, KC_6, KC_7, KC_8, KC_9, KC_0, TT(4),
         M(LAUNCH_ROFI), KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPACE,
-        KC_H, KC_J, KC_K, KC_L, LT(5, KC_SCOLON), GUI_T(KC_QUOTE),
+        KC_H, KC_J, KC_K, KC_L, KC_SCOLON, GUI_T(KC_QUOTE),
         SCMD_T(KC_CAPSLOCK), KC_N, KC_M, KC_COMMA, ALT_T(KC_DOT), CTL_T(KC_SLASH), KC_RSPC,
         KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, MEH_T(KC_NO),
         // thumb
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      | WLft | WDwn | WUp  | WRght|        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |Accel0|Accel1|Accel2|      |           |------|      | MLft | MDwn | MUp  | MRght|        |
+ * |        |      |Accel0|Accel1|Accel2|      |------|           |------|      | MLft | MDwn | MUp  | MRght|        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUMSE] = LAYOUT_ergodox(
         RESET, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NUMLOCK,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2,
+        KC_TRNS, KC_TRNS, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         // thumb
@@ -154,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      | home | pgup | pgdwn| end  |  PgUp  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      | *L3* |------|           |------|      |  <-  | Dwn  | Up   | ->   | PgDwn  |
+ * |        |      |      |      | *L3* |      |------|           |------|      |  <-  | Dwn  | Up   | ->   | PgDwn  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |  End   |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -186,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Keymap 4: Media and mouse keys
 *
 * ,--------------------------------------------------.           ,--------------------------------------------------.
-* |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+* | *TT4*  |      |      |      |      |      |      |           |      |      |      |      |      |      | *TT4*  |
 * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
 * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
 * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -194,7 +194,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
 * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
 * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-*   |      | Rev  | Stop | Play | FF   |                                       | Prev | VDwn | VUp  | Nxt  | Mute  |
+*   | Mute | Rev  | Stop | Play | FF   |                                       | Prev | VDwn | VUp  | Nxt  | Mute  |
 *   `----------------------------------'                                       `----------------------------------'
 *                                        ,-------------.       ,-------------.
 *                                        |      |      |       |      |      |
@@ -208,7 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                            KC_TRNS, KC_MEDIA_REWIND, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_FAST_FORWARD,
+                            KC_AUDIO_MUTE, KC_MEDIA_REWIND, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_FAST_FORWARD,
                             // thumb
                             KC_TRNS, KC_TRNS, KC_TRNS, KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK, KC_TRNS,
                             //right
