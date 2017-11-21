@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Tab/Cmd|   A  |   S  |   D  | F/L3 |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | '/ Cmd | // TODO: think about using ; as the L1 toggle
  * |--------+------+------+------+------+------| SCMD |           | SCMD |------+------+------+------+------+--------|
- * | (/LShf |Z/Ctrl|   X  |   C  |   V  | B/L2 | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
+ * | (/LShf |Z/Ctrl|   X  |   C  |  V/L2|   B  | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | CSL3 |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | CSL3 |
  *   `----------------------------------'                                       `----------------------------------'
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(4), KC_1, KC_2, KC_3, KC_4, KC_5, KC_ESC,
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T, M(LAUNCH_TERM),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(3, KC_F), KC_G,
-        KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, KC_V, LT(2, KC_B), SCMD_T(KC_CAPSLOCK),
+        KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, LT(2, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
         MEH_T(KC_NO), KC_LALT, KC_DOWN, KC_UP, KC_LCTL,
         // thumb
         KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(1, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
