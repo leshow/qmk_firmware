@@ -9,6 +9,7 @@
 #define ARRW 3  // directional + nav
 #define MDIA 4  // volume + playback
 #define MOUSE 5 // Mouse layer 2
+#define UCODE 6 // UNICODE LAYER
 
 enum custom_keycodes
 {
@@ -21,12 +22,6 @@ enum custom_keycodes
 // macros
 #define LAUNCH_TERM 2
 #define LAUNCH_ROFI 3
-// enum custom_macros
-// {
-//   LAUNC_TERM,
-//   LAUNC_ROFI,
-//   // LCTL_LSFT_L3
-// };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Keymap 0: Basic layer
@@ -38,9 +33,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Tab/Cmd|   A  |   S  |   D  | F/L3 |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | '/ Cmd | // TODO: think about using ; as the L1 toggle
  * |--------+------+------+------+------+------| SCMD |           | SCMD |------+------+------+------+------+--------|
- * | (/LShf |Z/Ctrl|   X  |   C  |  V/L2|   B  | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
+ * | (/LShf |Z/Ctrl| X/Alt|   C  |  V/L2|   B  | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | CSL3 |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | CSL3 |
+ *   | CSL3 |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | MO6  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Ins  | Caps |       | AltGr| RCtrl|
@@ -57,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(4), KC_1, KC_2, KC_3, KC_4, KC_5, KC_ESC,
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T, M(LAUNCH_TERM),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(3, KC_F), KC_G,
-        KC_LSPO, CTL_T(KC_Z), KC_X, KC_C, LT(2, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
-        MEH_T(KC_NO), KC_LALT, KC_DOWN, KC_UP, KC_LCTL,
+        KC_LSPO, CTL_T(KC_Z), ALT_T(KC_X), KC_C, LT(2, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
+        MEH_T(KC_NO), MO(6), KC_DOWN, KC_UP, KC_LCTL,
         // thumb
         KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(1, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
         // right hand
@@ -66,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         M(LAUNCH_ROFI), KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPACE,
         KC_H, KC_J, KC_K, KC_L, KC_SCOLON, GUI_T(KC_QUOTE),
         SCMD_T(KC_CAPSLOCK), KC_N, KC_M, KC_COMMA, ALT_T(KC_DOT), CTL_T(KC_SLASH), KC_RSPC,
-        KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, MEH_T(KC_NO),
+        KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, MO(6),
         // thumb
         KC_LALT, KC_RCTRL, KC_VOLU, KC_VOLD, SFT_T(KC_ENTER), LT(1, KC_SPACE)),
     /* MINE Keymap 1: Symbol Layer
@@ -255,7 +250,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                              //thumb
-                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)};
+                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+    /* Keymap 5: UNICODE
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |   ☠  |  💩  |  ∪   |  ∩   |  ×   |      |           |      |  λ   |  ℕ   |  ⇐   |  ⇒   |     |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |  ρ   |  ε   |  β   |  α   |  ¬   |------|           |------|  ∀   |  ←   |   ↓  |  ↑   |  →   |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |  ∃   |  ∧   |  ∨  |  ∷   |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+    // UNICODE
+    [UCODE] = LAYOUT_ergodox(
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, UC(0x2620), UC(0x2115), UC(0x222A), UC(0x2229), UC(0x00D7), KC_TRNS,
+        KC_TRNS, UC(0x03C1), UC(0x03B5), UC(0x03B2), UC(0x03B1), UC(0x00AC),
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,
+        KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS,
+        // right hand
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, UC(0x03BB), UC(0x2115), UC(0x21D0), UC(0x21D2), KC_TRNS, KC_TRNS,
+        UC(0x2200), UC(0x2190), UC(0x2193), UC(0x2191), UC(0x2192), KC_TRNS,
+        KC_TRNS, UC(0x2203), UC(0x2227), UC(0x2228), UC(0x2237), KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,
+        KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS),
+};
 
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(SYMB),  // FN1 - Momentary Layer 1 (Symbols)
@@ -334,8 +370,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 }
 
 // Runs just one time when the keyboard initializes.
-void matrix_init_user(void){
-
+void matrix_init_user(void)
+{
+  set_unicode_input_mode(UC_LNX);
 };
 
 // Runs constantly in the background, in a loop.
