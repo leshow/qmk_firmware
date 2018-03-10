@@ -1,0 +1,5 @@
+MOUSEKEY_ENABLE  = yes       # Mouse keys(+4700)
+EXTRAKEY_ENABLE  = yes
+UNICODE_ENABLE   = yes
+NKRO_ENABLE      = yes
+BACKLIGHT_ENABLE = no
