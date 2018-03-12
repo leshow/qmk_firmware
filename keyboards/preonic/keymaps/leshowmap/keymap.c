@@ -178,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_F12,  KC_F1,     KC_F2,    KC_F3,       KC_F4,       KC_F5,    KC_F6,    KC_F7,   KC_F8,   KC_F9,    KC_F10,   KC_F11},
   {_______, KC_QUES,   KC_CIRC,  KC_PERC,     KC_HASH,     KC_ASTR,  KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT,    KC_EXLM, _______},
   {_______, KC_BSLASH, KC_AMPR,  KC_RBRACKET, KC_LBRACKET, KC_MINUS, KC_UNDS,  KC_LPRN, KC_RPRN, KC_DLR,   KC_COLN,  KC_DQUO},
-  {_______, KC_QUOT,   KC_COMMA, KC_GRAVE,    KC_PLUS,     KC_TILD,  KC_PIPE,  KC_LABK, KC_RABK, KC_SLASH, _______,  _______},
+  {_______, KC_QUOT,   KC_COMMA, KC_DOT, KC_GRAVE,    KC_PLUS,     KC_TILD,  KC_PIPE,  KC_LABK, KC_RABK, KC_SLASH,  _______},
   {KC_MUTE, _______, _______, _______, _______, _______, _______,  _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY}
 },
 /* SYMB
@@ -198,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_F12,  KC_F1,     KC_F2,    KC_F3,       KC_F4,       KC_F5,    KC_F6,    KC_F7,   KC_F8,   KC_F9,    KC_F10,   KC_F11},
   {_______, KC_QUES,   KC_CIRC,  KC_PERC,     KC_HASH,     KC_ASTR,  KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT,    KC_EXLM, _______},
   {_______, KC_BSLASH, KC_AMPR,  KC_RBRACKET, KC_LBRACKET, KC_MINUS, KC_UNDS,  KC_LPRN, KC_RPRN, KC_DLR,   KC_COLN,  KC_DQUO},
-  {_______, KC_QUOT,   KC_COMMA, KC_GRAVE,    KC_PLUS,     KC_TILD,  KC_PIPE,  KC_LABK, KC_RABK, KC_SLASH, _______,  _______},
+  {_______, KC_QUOT,   KC_COMMA, KC_DOT, KC_GRAVE,    KC_PLUS,     KC_TILD,  KC_PIPE,  KC_LABK, KC_RABK, KC_SLASH,  _______},
   {KC_MUTE, _______, _______, _______, _______, _______, _______,  _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY}
 },
 /* Adjust (Lower + Raise)
