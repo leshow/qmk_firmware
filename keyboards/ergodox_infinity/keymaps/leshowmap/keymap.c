@@ -298,7 +298,8 @@ const uint16_t PROGMEM fn_actions[] = {
     [2] = ACTION_LAYER_TAP_TOGGLE(NUMSE), // FN1 - Momentary Layer 1 (Symbols)
     [3] = ACTION_LAYER_TAP_TOGGLE(ARRW),  // FN1 - Momentary Layer 1 (Symbols)
     [4] = ACTION_LAYER_TAP_TOGGLE(MDIA),  // FN1 - Momentary Layer 1 (Symbols)
-    [5] = ACTION_LAYER_TAP_TOGGLE(UCODE)};
+    [5] = ACTION_LAYER_TAP_TOGGLE(UCODE),
+    [6] = ACTION_LAYER_TAP_TOGGLE(NUM)};
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
