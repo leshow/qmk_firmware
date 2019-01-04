@@ -197,7 +197,7 @@ static void get_visualizer_layer_and_color(visualizer_state_t *state)
     state->layer_text = "Num";
     start_keyframe_animation(&KITT_Scanner_animation);
   }
-  if (IS_LAYER_ACTIVE(state->status.layer, 6))
+  else if (IS_LAYER_ACTIVE(state->status.layer, 5))
   {
     state->target_lcd_color = LCD_COLOR(RASPBERRY, saturation, 0xFF);
     state->layer_text = "Unicode";
