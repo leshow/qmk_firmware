@@ -191,7 +191,13 @@ static void get_visualizer_layer_and_color(visualizer_state_t *state)
   //   state->target_lcd_color = LCD_COLOR(VIOLET, saturation, 0xFF);
   //   state->layer_text = "Plover";
   // }
-  if (IS_LAYER_ACTIVE(state->status.layer, 5))
+  if (IS_LAYER_ACTIVE(state->status.layer, 6))
+  {
+    state->target_lcd_color = LCD_COLOR(TURQUOISE, saturation, 0xFF);
+    state->layer_text = "Num";
+    start_keyframe_animation(&KITT_Scanner_animation);
+  }
+  if (IS_LAYER_ACTIVE(state->status.layer, 6))
   {
     state->target_lcd_color = LCD_COLOR(RASPBERRY, saturation, 0xFF);
     state->layer_text = "Unicode";
@@ -199,7 +205,7 @@ static void get_visualizer_layer_and_color(visualizer_state_t *state)
   }
   else if (IS_LAYER_ACTIVE(state->status.layer, 4))
   {
-    state->target_lcd_color = LCD_COLOR(RED, saturation, 0xFF);
+    state->target_lcd_color = LCD_COLOR(ORANGE, saturation, 0xFF);
     state->layer_text = "Media";
     start_keyframe_animation(&KITT_Scanner_animation);
   }
@@ -217,7 +223,7 @@ static void get_visualizer_layer_and_color(visualizer_state_t *state)
   }
   else if (IS_LAYER_ACTIVE(state->status.layer, 1))
   {
-    state->target_lcd_color = LCD_COLOR(MAGENTA, saturation, 0xFF);
+    state->target_lcd_color = LCD_COLOR(CYAN, saturation, 0xFF);
     state->layer_text = "Syntax";
     start_keyframe_animation(&KITT_Scanner_animation);
   }
