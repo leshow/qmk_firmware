@@ -176,21 +176,6 @@ static void get_visualizer_layer_and_color(visualizer_state_t *state)
   {
     saturation = 255;
   }
-  // if (state->status.layer & 0x200)
-  // {
-  //   state->target_lcd_color = LCD_COLOR(GREEN, saturation, 0xFF);
-  //   state->layer_text = "MOUSE";
-  // }
-  // else if (state->status.layer & 0x100)
-  // {
-  //   state->target_lcd_color = LCD_COLOR(MAGENTA, saturation, 0xFF);
-  //   state->layer_text = "Shortcuts Layer";
-  // }
-  // else if (state->status.layer & 0x80)
-  // {
-  //   state->target_lcd_color = LCD_COLOR(VIOLET, saturation, 0xFF);
-  //   state->layer_text = "Plover";
-  // }
   if (IS_LAYER_ACTIVE(state->status.layer, 6))
   {
     state->target_lcd_color = LCD_COLOR(TURQUOISE, saturation, 0xFF);
