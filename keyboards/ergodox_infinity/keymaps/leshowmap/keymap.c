@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| SCMD |           | SCMD |------+------+------+------+------+--------|
  * | (/LShf |Z/Ctrl| X/Alt|   C  |  V/L2|   B  | /cap |           | /cap |   N  |   M  |   ,  | ./Alt| //Ctl| RShft/)|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | CSL3 |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | MO6  |
+ *   |TTNum |  Alt | Down |  Up  | Ctrl |                                       |  <-  | Down |  up  |  ->  | MO6  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Ins  | Caps |       | AltGr| RCtrl|
@@ -53,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T, M(LAUNCH_TERM),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(ARRW, KC_F), KC_G,
         KC_LSPO, CTL_T(KC_Z), ALT_T(KC_X), KC_C, LT(NUMSE, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
-        MEH_T(KC_NO), MO(UCODE), KC_DOWN, KC_UP, KC_LCTL,
+        TT(NUM), MO(UCODE), KC_DOWN, KC_UP, KC_LCTL,
         // thumb
-        KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(SYMB, KC_BSPC), LT(NUM, KC_DEL), KC_MEDIA_PLAY_PAUSE,
+        KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(SYMB, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
         // right hand
         KC_ESC, KC_6, KC_7, KC_8, KC_9, KC_0, TT(MDIA),
         M(LAUNCH_ROFI), KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPACE,
@@ -260,11 +260,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      |      |   [  |   ]  |      |           |      |  +   |  7   |  8   |   9  |      |        |
+ * |        |  ?   |  ^   |  %   |   #  |   *  |      |           |      |  =   |  7   |  8   |   9  |  !   |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |   (  |  )   |------|           |------|  -   |  4   |  5   |  6   |      |        |
+ * |        |  \   |  &   |  (   |   )  |  -   |------|           |------|  _   |  4   |  5   |  6   |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |   {  |   }  |      |           |      |  .   |   1  |   2  |  3   |      |        |
+ * |        |  '   |  ,   |  .   |   `  |   +  |      |           |      |  .   |   1  |   2  |  3   |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                                       |   0  |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -277,16 +277,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
     [NUM] = LAYOUT_ergodox(_______, _______, _______, _______, _______, _______, _______,
-                           _______, _______, _______, _______, KC_LBRACKET, KC_RBRACKET, _______,
-                           _______, _______, _______, _______, KC_LPRN, KC_RPRN,
-                           _______, _______, _______, _______, KC_LCBR, KC_RCBR, _______,
+                           _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR, _______,
+                           _______, KC_BSLASH, KC_AMPR, KC_LCBR, KC_RCBR, KC_MINUS,
+                           _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,
                            _______, _______, _______, _______, _______,
                            //thumb
                            _______, _______, _______, _______, _______, _______,
                            // right hand
                            _______, _______, _______, _______, _______, _______, _______,
-                           _______, KC_PLUS, KC_7, KC_8, KC_9, _______, _______,
-                           KC_MINUS, KC_4, KC_5, KC_6, _______, _______,
+                           _______, KC_EQUAL, KC_7, KC_8, KC_9, KC_EXLM, _______,
+                           KC_UNDS, KC_4, KC_5, KC_6, _______, _______,
                            _______, KC_DOT, KC_1, KC_2, KC_3, _______, _______,
                            KC_0, _______, _______, _______, _______,
                            //thumb
