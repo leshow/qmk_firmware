@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,
         _______, _______, _______, _______, _______,
         // thumb
-        _______, _______, _______, _______, _______, _______, // added here
+        _______, _______, _______, KC_SPACE, _______, _______, // added here
         // right hand
         KC_F12, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______,
         _______, KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______,
