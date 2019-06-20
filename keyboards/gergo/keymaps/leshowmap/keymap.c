@@ -32,14 +32,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,-------------------------------------------.                         ,-------------------------------------------.
- * | TT-MDIA |   Q  |   W  |   E  |   R  |   T  |                         |   Y  |   U  |   I  |   O  |   P  |  | \   |
+ * | TT-MDIA |   Q  |   W  |   E  |   R  |   T  |                         |   Y  |   U  |   I  |   O  |   P  | BKspc |
  * |--------+------+------+------+------+------|------.           .------|------+------+------+------+------+--------|
- * |LGUI/Tab|   A  |   S  |  D   |   F  |   G  | Term |           |      |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |LGUI/Tab|   A  |   S  |  D   |   F  |   G  | Term |           | rofi |   H  |   J  |   K  |   L  | ;  : |  ' "   |
  * |--------+------+------+------+------+------|------|           |------|------+------+------+------+------+--------|
  * | LShift |Ctl/Z |ALT/X  |   C  |   V  |   B  | SCMD |           | SCMD |   N  |   M  | ,  < | . >  | /  ? |  SHIFT|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *                    .----------.   .-------.                                 .------.   .-----.
- *                    | Control  |   |TT(Num)|                                 | Tab  |   |BKSP |
+ *                    | Control  |   |TT(Num)|                                 | Tab  |   | Esc |
  *                    '----------'   '-------'                                 `------.   '-----'
  *                                        ,-------.                      ,-------.
  *                                        | Ins   |                      | UCODE |
@@ -50,11 +50,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------'                      `--------------'
  */
 [BASE] = LAYOUT_GERGO(  
-TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                     KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_PIPE, 
+TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                     KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
 GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  M(LAUNCH_TERM),            M(LAUNCH_ROFI),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
-KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),     KC_BSPC,  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
+KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),     SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
                                       
-			                                  KC_LCTL, TT(NUM),                              KC_TAB, KC_BSPC,
+			                                  KC_LCTL, TT(NUM),                              KC_TAB, KC_ESC,
 
                                                            KC_INSERT,                  MO(UCODE),
                                 LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                     SFT_T(KC_ENT), LT(SYMB, KC_SPC)),
@@ -79,9 +79,9 @@ KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_C
  *                                 `--------------'                     `--------------'
  */
 [SYMB] = LAYOUT_GERGO(  
-_______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                          _______, _______, _______, _______, _______, KC_BSLS, 
-_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  _______,     _______,  KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_QUOT, 
-_______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,                _______,  KC_AMPR, KC_EQL,  KC_COMM, KC_DOT,  KC_SLSH, KC_MINS, 
+_______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                           KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, 
+_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  _______,     _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO,
+_______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,                _______, KC_TILD, KC_PIPE, KC_LABK, KC_RABK, KC_SLASH, _______,
 
                                                   _______, _______,       _______, _______,
                                                            _______,       _______,
@@ -89,11 +89,11 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,                _
 /* Keymap 2: Pad/Function layer
  *
  * ,-------------------------------------------.                         ,-------------------------------------------.
- * |        |   1  |  2   |  3   |  4   |  5   |                         |  6   |  7   |  8   |  9   |  0   |        |
+ * |        |      |      |      |      |      |                         |      | Wlft |  wDn  | wUp | wRgt  |        |
  * |--------+------+------+------+------+------|------.           .------|------+------+------+------+------+--------|
- * |       | accel0| accl1| accl3|      |      |      |           |      |      | Wlft |  wDn  | wUp | wRgt |       |
+ * |       | accel0| accl1| accl3|      |      |      |           |      |      |  <-  | down |  up  |  ->  |        |
  * |--------+------+------+------+------+------|------|           |------|------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |     | <-   |  down |  up   |  -> |        |
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *                        .------.   .------.                                 .------.   .-----.
  *                        |      |   |      |                                 | Ms3  |   |     |
@@ -107,13 +107,13 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,                _
  *                                 `--------------'                     `--------------'
  */
 [NUMB] = LAYOUT_GERGO(  
-_______, KC_1, KC_2, KC_3, KC_4, KC_5,                                                  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, 
-_______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,   _______,         _______, _______, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, _______,
-_______, _______, _______, _______, _______, _______, _______,                          _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______, _______, 
+_______, _______, _______, _______, _______, _______,                                   _______ , KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT,  _______, 
+_______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,   _______,         _______, _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______,
+_______, _______, _______, _______, _______, _______, _______,                          _______,  _______, _______, _______, _______, _______,_______, 
 
                                                   _______, _______,       KC_MS_BTN3, _______,
                                                            _______,       _______,
-                                             	  KC_MS_BTN2, _______,       KC_MS_BTN1, _______),
+                                             	  KC_MS_BTN2, _______,       _______, KC_MS_BTN1),
 
 /* Keymap template 
  *
@@ -150,10 +150,10 @@ _______, _______, _______, _______, _______, _______, _______,       _______,  _
  * |--------+------+------+------+------+------|------.           .------|------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|------|           |------|------+------+------+------+------+--------|
- * |  mute  |  rev |  stop| play | FF   |      |      |           |      |      | Prev |  V-  |  V+  |  Nxt | mute   |
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      | mute   |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *                        .------.   .------.                                 .------.   .-----.
- *                        |      |   |      |                                 |      |   |     |
+ *                        |      |   |      |                                 |  V-  |   |  V+ |
  *                        '------'   '------'                                 `------.   '-----'
  *                                        ,-------.       ,-------.
  *                                        |       |       |       |
@@ -166,9 +166,9 @@ _______, _______, _______, _______, _______, _______, _______,       _______,  _
 [MDIA] = LAYOUT_GERGO(  
 _______, _______, _______, _______, _______, _______,                                                              _______, _______, _______, _______, _______, _______, 
 _______, _______, _______, _______, _______, _______, _______,                                                     _______,  _______, _______, _______, _______, _______, _______, 
-KC_AUDIO_MUTE, KC_MEDIA_REWIND, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_FAST_FORWARD, _______, _______,       _______,  _______, KC_MEDIA_PREV_TRACK, KC_VOLD, KC_VOLU, KC_MEDIA_NEXT_TRACK, KC_AUDIO_MUTE,
+_______, _______, _______, _______, _______, _______, _______,                                                     _______,  _______, _______, _______, _______, _______, KC_AUDIO_MUTE,
 
-                                                  _______, _______,                                                _______, _______,
+                                                  _______, _______,                                                KC_VOLD, KC_VOLU,
                                                            _______,                                                _______,
                           KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,                                                KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE),
  
