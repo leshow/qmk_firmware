@@ -54,7 +54,7 @@ TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                              
 GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  M(LAUNCH_TERM),            M(LAUNCH_ROFI),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
 KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),     SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
                                       
-			                                  KC_LCTL, TT(NUM),                              KC_TAB, KC_ESC,
+			                                  KC_LCTL, MO(NUM),                              KC_TAB, KC_ESC,
 
                                                            KC_INSERT,                  MO(UCODE),
                                 LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                     SFT_T(KC_ENT), LT(SYMB, KC_SPC)),
@@ -191,7 +191,7 @@ _______, _______, _______, _______, _______, _______, _______,                  
  *                                 |      |       |       |       |      |
  *                                 |      |       |       |       |      |
  *                                 `--------------'       `--------------'
- */
+ *
 [UCODE] = LAYOUT_GERGO(  
 _______, UC(0x2620), UC(0x22B8), UC(0x222A), UC(0x2229), UC(0x00D7),                                UC(0x03BB), UC(0x2115), UC(0x21D0), UC(0x21D2), _______, _______,
 _______, UC(0x03C1), UC(0x03B5), UC(0x03B2), UC(0x03B1), UC(0x00AC), _______,             _______,  UC(0x2200), UC(0x2190), UC(0x2193), UC(0x2191), UC(0x2192), _______, 
@@ -200,6 +200,7 @@ _______, _______, _______, UC(0x2605), UC(0x2713), UC(0x03C9), _______,         
                                                   _______, _______,       _______, _______,
                                                           _______,       _______,
                                              	  _______, _______,       _______, _______),
+                                                 */
 
 /* Keymap template 
  *
@@ -259,10 +260,10 @@ _______, _______, _______, _______, _______, _______, _______,       _______,  _
  */
 };
 
-// Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
+// // Runs just one time when the keyboard initializes.
+// void matrix_init_user(void) {
 
-};
+// };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
@@ -288,10 +289,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   return MACRO_NONE;
 };
 
-// Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
-    //uint8_t layer = biton32(layer_state);
-    biton32(layer_state);
-};
+// // Runs constantly in the background, in a loop.
+// void matrix_scan_user(void) {
+//     //uint8_t layer = biton32(layer_state);
+//     biton32(layer_state);
+// };
 
 
