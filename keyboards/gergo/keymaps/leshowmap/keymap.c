@@ -15,16 +15,12 @@
 #define MDIA 4   // volume + playback
 #define UCODE 5  // UNICODE LAYER
 #define NUM 6    // NUM LAYER
-// macros
-#define LAUNCH_TERM 2
-#define LAUNCH_ROFI 3
-
-// Blank template at the bottom
 
 enum customKeycodes {
-	URL  = 1
+    PLACEHOLDER = SAFE_RANGE,
+    LAUNCH_TERM,
+    LAUNCH_ROFI,
 };
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -47,11 +43,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |       |                      |       |      |
  *                                 `--------------'                      `--------------'
  */
+
 [BASE] = LAYOUT_gergo(  
 TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                                      KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
-GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  M(LAUNCH_TERM),                             M(LAUNCH_ROFI),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
-KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    MO(UCODE), SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
+GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LAUNCH_TERM,                             LAUNCH_ROFI,  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
+KC_LSHIFT,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    MO(UCODE), SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSHIFT, 
            KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_TAB, KC_ESC),
+
 /* Keymap 1: Symbols layer
  *
  * ,-------------------------------------------.                         ,-------------------------------------------.
@@ -72,11 +70,13 @@ KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_C
  *                                 |      |       |                     |       |      |
  *                                 `--------------'                     `--------------'
  */
+
 [SYMB] = LAYOUT_gergo(  
 _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                           KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, 
 _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  _______,     _______, KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO,
 _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,_______,        _______, _______, KC_TILD, KC_PIPE, KC_LABK, KC_RABK, KC_SLASH, _______,
  _______, _______, KC_SPACE, _______,                                           KC_SPACE, _______, _______,_______ ),
+
 /* Keymap 2: Pad/Function layer
  *
  * ,-------------------------------------------.                         ,-------------------------------------------.
@@ -97,6 +97,7 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS, _______,_______,        _
  *                                 |      |       |                     |       |      |
  *                                 `--------------'                     `--------------'
  */
+
 [NUMB] = LAYOUT_gergo(  
 _______, _______, _______, _______, _______, _______,                                   _______ , KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT,  _______, 
 _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,   _______,         _______, _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______,
@@ -123,17 +124,19 @@ _______, _______, _______, _______, _______, _______, _______, _______,         
  *                                 |      |       |       |       |      |
  *                                 `--------------'       `--------------'
  */
+
 [ARRW] = LAYOUT_gergo(  
 _______, _______, _______, _______, _______, _______,                          _______, KC_HOME, KC_PGDOWN, KC_PGUP, KC_END, _______, 
 _______, _______, _______, _______, _______, _______, _______,                 _______,  _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, 
 _______, _______, _______, _______, _______, _______, _______, _______,       _______, _______,  _______, _______, _______, _______,  _______, _______, 
 _______, _______, _______, _______,                                           _______, _______, _______, _______ ),
+
 /* Keymap template 
  *
  * ,-------------------------------------------.                         ,-------------------------------------------.
- * |        |      |      |      |      |      |                         |      |      |      |      |      |        |
+ * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                         |  F6  |  F7  |  F8  |  F9  |  F10 |        |
  * |--------+------+------+------+------+------|------.           .------|------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |  <-  |  stop| play |  ->  |        |
+ * |        |      |      |      |      |      |  F11 |           |  F12 |      |  <-  |  stop| play |  ->  |        |
  * |--------+------+------+------+------+------|------|           |------|------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      | mute   |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -148,9 +151,10 @@ _______, _______, _______, _______,                                           __
  *                                 |      |       |       |       |      |
  *                                `--------------'       `--------------'
  */
+
 [MDIA] = LAYOUT_gergo(  
-_______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______, 
-_______, _______, _______, _______, _______, _______, _______,                      _______,  _______, KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, _______, 
+_______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,                                         KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,   _______, 
+_______, _______, _______, _______, _______, _______, KC_F11,                       KC_F12,  _______, KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, _______, 
 _______, _______, _______, _______, _______, _______, _______, _______,             _______,  _______,  _______, _______, _______, _______, _______, KC_AUDIO_MUTE,
  _______, _______, _______, _______,                                                KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE,KC_VOLD, KC_VOLU),
  
@@ -174,6 +178,7 @@ _______, _______, _______, _______, _______, _______, _______, _______,         
  *                                 |      |       |       |       |      |
  *                                 `--------------'       `--------------'
  */ 
+
 [UCODE] = LAYOUT_gergo(  
 _______, UC(0x2620), UC(0x22B8), UC(0x222A), UC(0x2229), UC(0x00D7),                                UC(0x03BB), UC(0x2115), UC(0x21D0), UC(0x21D2), _______, _______,
 _______, UC(0x03C1), UC(0x03B5), UC(0x03B2), UC(0x03B1), UC(0x00AC), _______,             _______,  UC(0x2200), UC(0x2190), UC(0x2193), UC(0x2191), UC(0x2192), _______, 
@@ -200,6 +205,7 @@ _______,       _______,_______,       _______,                                  
  *                                 |      |       |       |       |      |
  *                                 `--------------'       `--------------'
  */
+
 [NUM] = LAYOUT_gergo(  
 _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                         KC_EQUAL, KC_7, KC_8, KC_9, KC_EXLM, _______, 
 _______, KC_BSLASH, KC_AMPR, KC_LCBR, KC_RCBR, KC_MINUS,_______,                _______,  KC_UNDS, KC_4, KC_5, KC_6, _______, _______,
@@ -235,26 +241,18 @@ _______, _______, _______, _______, _______, _______, _______,       _______,  _
  */
 };
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-  switch (id)
-  {
-  case 0:
-    break;
-  case 1:
-    break;
-  case LAUNCH_TERM:
-    if (record->event.pressed)
-    {
-      return MACRO(D(LGUI), T(ENTER), U(LGUI), END);
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LAUNCH_TERM: 
+            if (record->event.pressed) {
+                SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_ENTER) SS_UP(X_LGUI));
+            } 
+            return false;
+        case LAUNCH_ROFI:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LGUI("x"));
+            }
+            return false;
     }
-    break;
-  case LAUNCH_ROFI:
-    if (record->event.pressed)
-    {
-      return MACRO(D(LGUI), T(X), U(LGUI), END);
-    }
-  }
-  return MACRO_NONE;
-};
+    return true;
+}
