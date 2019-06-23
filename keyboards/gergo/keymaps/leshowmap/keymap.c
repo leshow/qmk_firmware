@@ -18,8 +18,6 @@
 
 enum customKeycodes {
     PLACEHOLDER = SAFE_RANGE,
-    LAUNCH_TERM,
-    LAUNCH_ROFI,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -30,10 +28,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|------.           .------|------+------+------+------+------+--------|
  * |LGUI/Tab|   A  |   S  |  D   |   F  |   G  | Term |           | rofi |   H  |   J  |   K  |   L  | ;  : |  ' "   |
  * |--------+------+------+------+------+------|------|           |------|------+------+------+------+------+--------|
- * | LShift |Ctl/Z |ALT/X  |   C  |   V  |   B  | SCMD |           | SCMD |   N  |   M  | ,  < | . >  | /  ? |  SHIFT|
+ * | LShift |Ctl/Z |ALT/X  |   C  |   V  |   B  | SCMD |           | SCMD|   N  |   M  | , <  | . >  | /  ? |  SHIFT|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *                    .----------.   .-------.                                 .------.   .-----.
- *                    | Control  |   |TT(Num)|                                 | Tab  |   | Esc |
+ *                    | Control  |   |TT(Num)|                                 | Esc  |   | Tab |
  *                    '----------'   '-------'                                 `------.   '-----'
  *                                        ,-------.                      ,-------.
  *                                        | Ins   |                      | UCODE |
@@ -46,9 +44,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [BASE] = LAYOUT_gergo(  
 TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                                      KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
-GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LAUNCH_TERM,                             LAUNCH_ROFI,  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
+GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LGUI(KC_ENTER),                             LGUI(KC_X),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
 KC_LSHIFT,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    MO(UCODE), SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSHIFT, 
-           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_TAB, KC_ESC),
+           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
 
 /* Keymap 1: Symbols layer
  *
@@ -240,19 +238,3 @@ _______, _______, _______, _______, _______, _______, _______,       _______,  _
                                              	  _______, _______,       _______, _______),
  */
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LAUNCH_TERM: 
-            if (record->event.pressed) {
-                SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_ENTER) SS_UP(X_LGUI));
-            } 
-            return false;
-        case LAUNCH_ROFI:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("x"));
-            }
-            return false;
-    }
-    return true;
-}
