@@ -13,11 +13,11 @@
 #define NUMB 2  // mouse keys
 #define ARRW 3   // directional + nav
 #define MDIA 4   // volume + playback
-#define UCODE 5  // UNICODE LAYER
-#define NUM 6    // NUM LAYER
+// #define UCODE 5  // UNICODE LAYER
+#define NUM 5    // NUM LAYER
 
 enum customKeycodes {
-    PLACEHOLDER = SAFE_RANGE,
+	URL  = 1
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -177,11 +177,11 @@ _______, _______, _______, _______, _______, _______, _______, _______,         
  *                                 `--------------'       `--------------'
  */ 
 
-[UCODE] = LAYOUT_gergo(  
-_______, UC(0x2620), UC(0x22B8), UC(0x222A), UC(0x2229), UC(0x00D7),                                UC(0x03BB), UC(0x2115), UC(0x21D0), UC(0x21D2), _______, _______,
-_______, UC(0x03C1), UC(0x03B5), UC(0x03B2), UC(0x03B1), UC(0x00AC), _______,             _______,  UC(0x2200), UC(0x2190), UC(0x2193), UC(0x2191), UC(0x2192), _______, 
-_______, _______, _______, UC(0x2605), UC(0x2713), UC(0x03C9), _______, _______,           _______,  _______,   UC(0x2203), UC(0x2227), UC(0x2228), UC(0x2237), _______, _______, 
-_______,       _______,_______,       _______,                                           _______, _______,       _______, _______),
+// [UCODE] = LAYOUT_gergo(  
+// _______, UC(0x2620), UC(0x22B8), UC(0x222A), UC(0x2229), UC(0x00D7),                                UC(0x03BB), UC(0x2115), UC(0x21D0), UC(0x21D2), _______, _______,
+// _______, UC(0x03C1), UC(0x03B5), UC(0x03B2), UC(0x03B1), UC(0x00AC), _______,             _______,  UC(0x2200), UC(0x2190), UC(0x2193), UC(0x2191), UC(0x2192), _______, 
+// _______, _______, _______, UC(0x2605), UC(0x2713), UC(0x03C9), _______, _______,           _______,  _______,   UC(0x2203), UC(0x2227), UC(0x2228), UC(0x2237), _______, _______, 
+// _______,       _______,_______,       _______,                                           _______, _______,       _______, _______),
 
 /* Keymap template 
  *
