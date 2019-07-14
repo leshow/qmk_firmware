@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T,  LGUI(KC_ENTER),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(ARRW, KC_F), KC_G,
         KC_LSPO, CTL_T(KC_Z), ALT_T(KC_X), KC_C, LT(NUMSE, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
-        TT(NUM), MO(UCODE), KC_MS_WH_DOWN, KC_MS_WH_UP, KC_LCTL,
+        MO(UCODE), KC_MS_WH_DOWN, KC_MS_WH_UP, KC_LCTL, TT(NUM),
         // thumb
         KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(SYMB, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
         // right hand
