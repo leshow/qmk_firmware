@@ -45,8 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_gergo(  
 TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                                      KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
 GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LGUI(KC_ENTER),                             LGUI(KC_X),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
-KC_LSHIFT,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    KC_AUDIO_MUTE, SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSHIFT, 
-           KC_LCTL, TT(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
+KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    KC_AUDIO_MUTE, SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
+           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
 
 /* Keymap 1: Symbols layer
  *
