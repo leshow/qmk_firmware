@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELETE, KC_Q, KC_W, KC_E, KC_R, KC_T,  LGUI(KC_ENTER),
         GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(ARRW, KC_F), KC_G,
         KC_LSPO, CTL_T(KC_Z), ALT_T(KC_X), KC_C, LT(NUMSE, KC_V), KC_B, SCMD_T(KC_CAPSLOCK),
-        MO(UCODE), KC_MS_WH_DOWN, KC_MS_WH_UP, KC_LCTL, TT(NUM),
+        MO(UCODE), KC_MS_WH_DOWN, KC_MS_WH_UP, KC_LCTL, MO(NUM),
         // thumb
         KC_INSERT, KC_CAPSLOCK, KC_AUDIO_MUTE, LT(SYMB, KC_BSPC), SFT_T(KC_DEL), KC_MEDIA_PLAY_PAUSE,
         // right hand
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LGUI(KC_X), KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPACE,
         KC_H, KC_J, KC_K, KC_L, KC_SCOLON, GUI_T(KC_QUOTE),
         SCMD_T(KC_CAPSLOCK), KC_N, KC_M, KC_COMMA, ALT_T(KC_DOT), CTL_T(KC_SLASH), KC_RSPC,
-        KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, MO(UCODE),
+        KC_ESC, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
         // thumb
         KC_LALT, KC_RCTRL, KC_VOLU, KC_VOLD, SFT_T(KC_ENTER), LT(SYMB, KC_SPACE)),
     /* MINE Keymap 1: Symbol Layer
