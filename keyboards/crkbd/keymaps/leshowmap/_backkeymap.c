@@ -1,4 +1,12 @@
 #include QMK_KEYBOARD_H
+#include "bootloader.h"
+#ifdef PROTOCOL_LUFA
+  #include "lufa.h"
+  #include "split_util.h"
+#endif
+#ifdef SSD1306OLED
+  #include "ssd1306.h"
+#endif
 
 extern keymap_config_t keymap_config;
 
@@ -13,22 +21,16 @@ extern uint8_t is_master;
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define _BASE 0
-#define _SYMB 1
-#define _NUMB 2
-#define _ARRW 3
-#define _MDIA 4
-#define _NUM 5
-#define _ADJUST 6
+#define BASE 0
+#define SYMB 1
+#define NUMB 2
+#define ARRW 3
+#define MDIA 4
+#define NUM 5
+#define ADJUST 6
 
 enum custom_keycodes {
-  BASE = SAFE_RANGE,
-  SYMB,
-  NUMB,
-  ARRW,
-  MDIA,
-  NUM,
-  ADJUST,
+  PLACEHOLDER = SAFE_RANGE,
   RGBRST
 };
 
@@ -36,9 +38,22 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
+#define KC______ KC_TRNS
+#define KC_XXXXX KC_NO
+#define KC_RST   RESET
+#define KC_LRST  RGBRST
+#define KC_LTOG  RGB_TOG
+#define KC_LHUI  RGB_HUI
+#define KC_LHUD  RGB_HUD
+#define KC_LSAI  RGB_SAI
+#define KC_LSAD  RGB_SAD
+#define KC_LVAI  RGB_VAI
+#define KC_LVAD  RGB_VAD
+#define KC_LMOD  RGB_MOD
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT( \
- //,-----------------------------------------.                ,-----------------------------------------.
+  [BASE] = LAYOUT( \
+  //,-----------------------------------------.                ,-----------------------------------------.
       TT(MDIA),    KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,  KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        GUI_T(KC_TAB),   KC_A,     KC_S,     KC_D,     LT(KC_F, ARRW),     KC_G,                      KC_H,     KC_J,     KC_K,     KC_L,  KC_SCLN,  GUI_T(KC_QUOT),\
@@ -49,8 +64,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        //`--------------------'  `--------------------'
   ),
 
-  [_SYMB] = LAYOUT( \
- //,-----------------------------------------.                ,-----------------------------------------.
+  [SYMB] = LAYOUT( \
+  //,-----------------------------------------.                ,-----------------------------------------.
       _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                  KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,           KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO,\
@@ -59,11 +74,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                  _______, KC_SPC, _______,      _______, KC_SPC, _______ \
                               //`--------------------'  `--------------------'
-                              //`--------------------'  `--------------------'
   ),
 
-  [_NUMB] = LAYOUT( \
- //,-----------------------------------------.                ,-----------------------------------------.
+  [NUMB] = LAYOUT( \
+  //,-----------------------------------------.                ,-----------------------------------------.
     _______, _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,    _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______,\
@@ -74,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                               //`--------------------'  `--------------------'
   ),
 
-  [_ARRW] = LAYOUT( \
+  [ARRW] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
 _______, _______, _______, _______, _______, _______,                 _______, KC_HOME, KC_PGDOWN, KC_PGUP, KC_END,  _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -85,7 +99,8 @@ _______, _______, _______, _______, _______, _______,                 _______, _
                                _______, _______, _______,     _______, _______, _______\
                               //`--------------------'  `--------------------'
   ),
-     [_MDIA] = LAYOUT( \
+
+    [MDIA] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
      _______,  KC_F1,    KC_F2,    KC_F3,   KC_F4,     KC_F5,                    KC_F6,     KC_F7,     KC_F8,    KC_F9,  KC_F10,  _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -97,7 +112,7 @@ _______, _______, _______, _______, _______, _______,                 _______, _
                               //`--------------------'  `--------------------'
   ),
 
-    [_NUM] = LAYOUT( \
+    [NUM] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
       _______, KC_QUES, KC_CIRC, KC_PERC,   KC_HASH,  KC_ASTR,                   KC_EQUAL,   KC_7,    KC_8,    KC_9,    KC_EXLM, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -109,7 +124,7 @@ _______, _______, _______, _______, _______, _______,                 _______, _
                               //`--------------------'  `--------------------'
   ),
 
-    [_ADJUST] = LAYOUT( \
+    [ADJUST] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
         RESET,  RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -171,7 +186,7 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     // If you want to change the display of OLED, you need to change here
     matrix_write_ln(matrix, read_layer_state());
     matrix_write_ln(matrix, read_keylog());
-    //matrix_write_ln(matrix, read_keylogs());
+    matrix_write_ln(matrix, read_keylogs());
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
     //matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_timelog());
@@ -204,63 +219,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   switch (keycode) {
-    case BASE:
-        if (record->event.pressed) {
-            persistent_default_layer_set(1UL<<_BASE);
-        }
-        return false;
-    case NUM:
-        if (record->event.pressed) {
-            layer_on(_NUM);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_NUM);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-    case ARRW:
-        if (record->event.pressed) {
-            layer_on(_ARRW);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_ARRW);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-    case MDIA:
-        if (record->event.pressed) {
-            layer_on(_MDIA);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_MDIA);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-    case NUMB:
-        if (record->event.pressed) {
-            layer_on(_NUMB);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_NUMB);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-    case SYMB:
-        if (record->event.pressed) {
-            layer_on(_SYMB);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_SYMB);
-            // update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-    case ADJUST:
-        if (record->event.pressed) {
-          layer_on(_ADJUST);
-        } else {
-          layer_off(_ADJUST);
-        }
-        return false;
+    // case BASE:
+    //   if (record->event.pressed) {
+    //     persistent_default_layer_set(1UL<<_BASE);
+    //   }
+    //   return false;
+    //   break;
+    // case SYMB:
+    //   if (record->event.pressed) {
+    //     layer_on(_SYMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   } else {
+    //     layer_off(_SYMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
+    //   break;
+    // case NUMB:
+    //   if (record->event.pressed) {
+    //     layer_on(_NUMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   } else {
+    //     layer_off(_NUMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
+    //   break;
+    // case ADJUST:
+    //     if (record->event.pressed) {
+    //       layer_on(_ADJUST);
+    //     } else {
+    //       layer_off(_ADJUST);
+    //     }
+    //     return false;
+    //     break;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
@@ -270,6 +262,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       return false;
+      break;
     case RGBRST:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
