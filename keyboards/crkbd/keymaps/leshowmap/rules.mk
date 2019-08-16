@@ -6,7 +6,7 @@
 MOUSEKEY_ENABLE = yes        # Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes        # Audio control and System control(+450)
 NKRO_ENABLE = no            # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
-BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
+# BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight. 
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE

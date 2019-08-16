@@ -50,21 +50,6 @@ enum macro_keycodes {
 #define KC_LVAI  RGB_VAI
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
-// #define KC_CTLTB CTL_T(KC_TAB)
-// #define KC_GUITQ GUI_T(KC_QUOT)
-// #define KC_GUITB GUI_T(KC_TAB)
-// #define KC_GUIEI GUI_T(KC_LANG2)
-// #define KC_ALTKN ALT_T(KC_LANG1)
-// #define KC_CTLZ CTL_T(KC_Z)
-// #define KC_CTLSLSH CTL_T(KC_SLSH)
-// #define KC_ALTX ALT_T(KC_X)
-// #define KC_ALTDOT ALT_T(KC_DOT)
-// #define MONUM MO(NUM)
-// #define SYMBSP LT(SYMB, KC_SPC)
-// #define TTMDA TT(MDIA)
-// #define SYMBBSP LT(SYMB, KC_BSPC)
-// #define SFTE LT(ADJUST, KC_ENT)
-// #define KC_SFTD SFT_T(KC_DEL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT( \
