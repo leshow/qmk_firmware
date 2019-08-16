@@ -21,22 +21,16 @@ extern uint8_t is_master;
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define _BASE 0
-#define _SYMB 1
-#define _NUMB 2
-#define _ARRW 3
-#define _MDIA 4
-#define _NUM 5
-#define _ADJUST 6
+#define BASE 0
+#define SYMB 1
+#define NUMB 2
+#define ARRW 3
+#define MDIA 4
+#define NUM 5
+#define ADJUST 6
 
 enum custom_keycodes {
-  BASE = SAFE_RANGE,
-  SYMB,
-  NUMB,
-  ARRW,
-  MDIA,
-  NUM,
-  ADJUST,
+  PLACEHOLDER = SAFE_RANGE,
   RGBRST
 };
 
@@ -46,11 +40,6 @@ enum macro_keycodes {
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
-#define KC_SYMB SYMB
-#define KC_ARRW ARRW
-#define KC_MDIA MDIA
-#define KC_NUM NUM
-#define KC_NUMB NUMB
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
@@ -61,104 +50,104 @@ enum macro_keycodes {
 #define KC_LVAI  RGB_VAI
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
-#define KC_CTLTB CTL_T(KC_TAB)
-#define KC_GUITQ GUI_T(KC_QUOT)
-#define KC_GUITB GUI_T(KC_TAB)
-#define KC_GUIEI GUI_T(KC_LANG2)
-#define KC_ALTKN ALT_T(KC_LANG1)
-#define KC_CTLZ CTL_T(KC_Z)
-#define KC_CTLSLSH CTL_T(KC_SLSH)
-#define KC_TTMDA TT(MDIA)
-#define KC_ALTX ALT_T(KC_X)
-#define KC_ALTDOT ALT_T(KC_DOT)
-#define KC_MONUM MO(NUM)
-#define KC_SYMBSP LT(SYMB, KC_SPC)
-#define KC_SYMBBSP LT(SYMB, KC_BSPC)
-#define KC_SFTE LT(ADJUST, KC_ENT)
-#define KC_SFTD SFT_T(KC_DEL)
+// #define KC_CTLTB CTL_T(KC_TAB)
+// #define KC_GUITQ GUI_T(KC_QUOT)
+// #define KC_GUITB GUI_T(KC_TAB)
+// #define KC_GUIEI GUI_T(KC_LANG2)
+// #define KC_ALTKN ALT_T(KC_LANG1)
+// #define KC_CTLZ CTL_T(KC_Z)
+// #define KC_CTLSLSH CTL_T(KC_SLSH)
+// #define KC_ALTX ALT_T(KC_X)
+// #define KC_ALTDOT ALT_T(KC_DOT)
+// #define MONUM MO(NUM)
+// #define SYMBSP LT(SYMB, KC_SPC)
+// #define TTMDA TT(MDIA)
+// #define SYMBBSP LT(SYMB, KC_BSPC)
+// #define SFTE LT(ADJUST, KC_ENT)
+// #define KC_SFTD SFT_T(KC_DEL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_kc( \
+  [BASE] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      TTMDA,    Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+      TT(MDIA),    KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,  KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       GUITB,   A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  GUITQ,\
+       GUI_T(KC_TAB),   KC_A,     KC_S,     KC_D,     LT(KC_F, ARRW),     KC_G,                      KC_H,     KC_J,     KC_K,     KC_L,  KC_SCLN,  GUI_T(KC_QUOT),\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        LSPO,   CTLZ, ALTX,  C,    V,      B,                      N,     M,    COMM,   ALTDOT,  CTLSLSH, RSPC,\
+        KC_LSPO,   CTL_T(KC_Z), ALT_T(KC_X), KC_C,    LT(KC_V, NUMB),      KC_B,                      KC_N,     KC_M,    KC_COMM,   ALT_T(KC_DOT),  CTL_T(KC_SLSH), KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                         MONUM,  SYMBBSP,  SFTD,                     SFTE, SYMBSP, ESC \
+                  MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                    LT(ADJUST, KC_ENT), LT(SYMB, KC_SPC), KC_ESC \
+                                       //`--------------------'  `--------------------'
+  ),
+
+  [SYMB] = LAYOUT( \
+  //,-----------------------------------------.                ,-----------------------------------------.
+      _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                  KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, \
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+      _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,           KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+      _______, KC_QUOT,  KC_COMMA,  KC_DOT,  KC_GRAVE,  KC_PLUS,                KC_TILD, KC_PIPE, KC_LABK, KC_RABK, KC_SLASH, _______,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                 _______, KC_SPC, _______,      _______, KC_SPC, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [_SYMB] = LAYOUT_kc( \
+  [NUMB] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, QUES, CIRC, PERC, HASH, ASTR,                  EQUAL, LCBR, RCBR, AT, EXLM, _____, \
+    _______, _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, BSLASH, AMPR, LBRACKET, RBRACKET, MINUS,           UNDS, LPRN, RPRN, DLR, COLN, DQUO,\
+    _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,    _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, QUOT,  COMMA,  DOT,  GRAVE,  PLUS,                TILD, PIPE, LABK, RABK, SLASH, _____,\
+    _______, _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 _____, SPC, _____,      _____, SPC, _____ \
+                              _______, _______, _______,     _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [_NUMB] = LAYOUT_kc( \
+  [ARRW] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-    _____, _____, _____, _____, _____, _____,            _____, _____, _____, _____, _____, _____,\
+_______, _______, _______, _______, _______, _______,                 _______, KC_HOME, KC_PGDOWN, KC_PGUP, KC_END,  _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    _____, MS_ACCEL0, MS_ACCEL1, MS_ACCEL2, _____, _____,    _____, MS_LEFT, MS_DOWN, MS_UP, MS_RIGHT, _____,\
+_______, _______, _______, _______, _______, _______,                  _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    _____, _____, _____, _____, _____, _____,             _____, _____, _____, _____, _____, _____, \
+_______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              _____, _____, _____,     _____, _____, _____ \
+                               _______, _______, _______,     _______, _______, _______\
                               //`--------------------'  `--------------------'
   ),
 
-  [_ARRW] = LAYOUT_kc( \
+    [MDIA] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-_____, _____, _____, _____, _____, _____,                 _____, HOME, PGDOWN, PGUP, END,  _____, \
+     _______,  KC_F1,    KC_F2,    KC_F3,   KC_F4,     KC_F5,                    KC_F6,     KC_F7,     KC_F8,    KC_F9,  KC_F10,  _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-_____, _____, _____, _____, _____, _____,                  _____, LEFT, DOWN, UP, RIGHT, _____, \
+     _______, _______, _______, _______, _______, KC_F11,                KC_F12, KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-_____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____, \
+    _______, _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, KC_AUDIO_MUTE, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               _____, _____, _____,     _____, _____, _____\
+                       _______, _______, KC_MEDIA_STOP,     KC_MEDIA_PLAY_PAUSE, KC_VOLD, KC_VOLU \
                               //`--------------------'  `--------------------'
   ),
 
-    [_MDIA] = LAYOUT_kc( \
+    [NUM] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-     _____,  F1,    F2,    F3,   F4,     F5,                    F6,     F7,     F8,    F9,  F10,  _____, \
+      _______, KC_QUES, KC_CIRC, KC_PERC,   KC_HASH,  KC_ASTR,                   KC_EQUAL,   KC_7,    KC_8,    KC_9,    KC_EXLM, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-     _____, _____, _____, _____, _____, F11,                F12, MEDIA_PREV_TRACK, MEDIA_STOP, MEDIA_PLAY_PAUSE, MEDIA_NEXT_TRACK, _____, \
+      _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,            KC_UNDS,   KC_4,    KC_5,     KC_6,    _______, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    _____, _____, _____, _____, _____, _____,            _____, _____, _____, _____, _____, AUDIO_MUTE, \
+      _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,                      KC_DOT,     KC_1,    KC_2,     KC_3,    _______, _______, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                       _____, _____, MEDIA_STOP,     MEDIA_PLAY_PAUSE, VOLD, VOLU \
+                               _______, _______, _______,     _______, _______, KC_0 \
                               //`--------------------'  `--------------------'
   ),
 
-    [_NUM] = LAYOUT_kc( \
+    [ADJUST] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, QUES, CIRC, PERC,   HASH,  ASTR,                   EQUAL,   7,    8,    9,    EXLM, _____, \
+        RESET,  RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, BSLASH, AMPR, LBRACKET, RBRACKET, MINUS,            UNDS,   4,    5,     6,    _____, _____, \
+       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, QUOT, COMMA, DOT, GRAVE, PLUS,                      DOT,     1,    2,     3,    _____, _____, \
+       RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               _____, _____, _____,     _____, _____, 0 \
-                              //`--------------------'  `--------------------'
-  ),
-
-    [_ADJUST] = LAYOUT_kc( \
-  //,-----------------------------------------.                ,-----------------------------------------.
-        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                           _____, _____, _____,      _____, _____, _____ \
+                           _______, _______, _______,      _______, _______, _______ \
     )
 };
 
@@ -245,12 +234,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   switch (keycode) {
-    case BASE:
-      if (record->event.pressed) {
-        persistent_default_layer_set(1UL<<_BASE);
-      }
-      return false;
-      break;
+    // case BASE:
+    //   if (record->event.pressed) {
+    //     persistent_default_layer_set(1UL<<_BASE);
+    //   }
+    //   return false;
+    //   break;
     // case SYMB:
     //   if (record->event.pressed) {
     //     layer_on(_SYMB);
