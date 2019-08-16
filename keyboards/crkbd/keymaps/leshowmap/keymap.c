@@ -62,79 +62,91 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
+#define KC_GUITQ GUI_T(KC_QUOT)
+#define KC_GUITB GUI_T(KC_TAB)
 #define KC_GUIEI GUI_T(KC_LANG2)
 #define KC_ALTKN ALT_T(KC_LANG1)
+#define KC_CTLZ CTL_T(KC_Z)
+#define KC_CTLSLSH CTL_T(KC_SLSH)
+#define KC_TTMDA TT(MDIA)
+#define KC_ALTX ALT_T(KC_X)
+#define KC_ALTDOT ALT_T(KC_DOT)
+#define KC_MONUM MO(NUM)
+#define KC_SYMBSP LT(SYMB, KC_SPC)
+#define KC_SYMBBSP LT(SYMB, KC_BSPC)
+#define KC_SFTE LT(ADJUST, KC_ENT)
+#define KC_SFTD SFT_T(KC_DEL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-    TT(MDIA),    Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+      TTMDA,    Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-GUI_T(KC_TAB),   A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  GUI_T(KC_QUOT),\
+       GUITB,   A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  GUITQ,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
- KC_LSPO,CTL_T(KC_Z),ALT_T(KC_X),  C,  V,  B,                        N,     M,  COMM, ALT_T(KC_DOT),CTL_T(KC_SLSH),KC_RSPC,\
+        LSPO,   CTLZ, ALTX,  C,    V,      B,                      N,     M,    COMM,   ALTDOT,  CTLSLSH, RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-       MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),       SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC \
+                         MONUM,  SYMBBSP,  SFTD,                     SFTE, SYMBSP, ESC \
                               //`--------------------'  `--------------------'
   ),
 
   [_SYMB] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,         KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, ______, \
+      _____, QUES, CIRC, PERC, HASH, ASTR,                  EQUAL, LCBR, RCBR, AT, EXLM, _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,      KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO,\
+      _____, BSLASH, AMPR, LBRACKET, RBRACKET, MINUS,           UNDS, LPRN, RPRN, DLR, COLN, DQUO,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,                KC_TILD, KC_PIPE, KC_LABK, KC_RABK, KC_SLASH, ______,\
+      _____, QUOT,  COMMA,  DOT,  GRAVE,  PLUS,                TILD, PIPE, LABK, RABK, SLASH, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                             ______, SPC, ______,      ______, SPC, ______ \
+                                 _____, SPC, _____,      _____, SPC, _____ \
                               //`--------------------'  `--------------------'
   ),
 
   [_NUMB] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-______, ______, ______, ______, ______, ______,                ______, ______, ______, ______, ______, ______,\
+    _____, _____, _____, _____, _____, _____,            _____, _____, _____, _____, _____, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, ______, ______,            ______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, ______,\
+    _____, MS_ACCEL0, MS_ACCEL1, MS_ACCEL2, _____, _____,    _____, MS_LEFT, MS_DOWN, MS_UP, MS_RIGHT, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, ______, ______, ______, ______, ______,                   ______, ______, ______, ______, ______, ______, \
+    _____, _____, _____, _____, _____, _____,             _____, _____, _____, _____, _____, _____, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              ______, ______, ______,     ______, ______, ______ \
+                              _____, _____, _____,     _____, _____, _____ \
                               //`--------------------'  `--------------------'
   ),
 
   [_ARRW] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-______, ______, ______, ______, ______, ______,                 ______, KC_HOME, KC_PGDOWN, KC_PGUP, KC_END,  ______, \
+_____, _____, _____, _____, _____, _____,                 _____, HOME, PGDOWN, PGUP, END,  _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, ______, ______, ______, ______, ______,                  ______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, ______, \
+_____, _____, _____, _____, _____, _____,                  _____, LEFT, DOWN, UP, RIGHT, _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, ______, ______, ______, ______, ______,                 ______, ______, ______, ______, ______, ______, \
+_____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               ______, ______, ______,     ______, ______, ______\
+                               _____, _____, _____,     _____, _____, _____\
                               //`--------------------'  `--------------------'
   ),
 
     [_MDIA] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-______, KC_F1,  KC_F2,  KC_F3,   KC_F4,   KC_F5,                KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,  ______, \
+     _____,  F1,    F2,    F3,   F4,     F5,                    F6,     F7,     F8,    F9,  F10,  _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, ______, ______, ______, ______, KC_F11,               KC_F12, KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, ______, \
+     _____, _____, _____, _____, _____, F11,                F12, MEDIA_PREV_TRACK, MEDIA_STOP, MEDIA_PLAY_PAUSE, MEDIA_NEXT_TRACK, _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, ______, ______, ______, ______, ______,                 ______, ______, ______, ______, ______, KC_AUDIO_MUTE, \
+    _____, _____, _____, _____, _____, _____,            _____, _____, _____, _____, _____, AUDIO_MUTE, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                       ______, ______, KC_MEDIA_STOP,     KC_MEDIA_PLAY_PAUSE, _KC_VOLD, KC_VOLU \
+                       _____, _____, MEDIA_STOP,     MEDIA_PLAY_PAUSE, VOLD, VOLU \
                               //`--------------------'  `--------------------'
   ),
 
     [_NUM] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,             KC_EQUAL, KC_7, KC_8, KC_9, KC_EXLM, ______, \
+      _____, QUES, CIRC, PERC,   HASH,  ASTR,                   EQUAL,   7,    8,    9,    EXLM, _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  KC_UNDS, KC_4, KC_5, KC_6, _______, ______, \
+      _____, BSLASH, AMPR, LBRACKET, RBRACKET, MINUS,            UNDS,   4,    5,     6,    _____, _____, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,            KC_DOT, KC_1, KC_2, KC_3, _______, ______, \
+      _____, QUOT, COMMA, DOT, GRAVE, PLUS,                      DOT,     1,    2,     3,    _____, _____, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               ______, ______, ______,     ______, ______, KC_0 \
+                               _____, _____, _____,     _____, _____, 0 \
                               //`--------------------'  `--------------------'
   ),
 
@@ -146,7 +158,8 @@ ______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,            KC_DOT, KC_1, K
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  XXXXX, LOWER,   SPC,      ENT, RAISE, XXXXX 
+                           _____, _____, _____,      _____, _____, _____ \
+    )
 };
 
 int RGB_current_mode;
@@ -238,34 +251,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case SYMB:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case NUMB:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case ADJUST:
-        if (record->event.pressed) {
-          layer_on(_ADJUST);
-        } else {
-          layer_off(_ADJUST);
-        }
-        return false;
-        break;
+    // case SYMB:
+    //   if (record->event.pressed) {
+    //     layer_on(_SYMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   } else {
+    //     layer_off(_SYMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
+    //   break;
+    // case NUMB:
+    //   if (record->event.pressed) {
+    //     layer_on(_NUMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   } else {
+    //     layer_off(_NUMB);
+    //     update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
+    //   break;
+    // case ADJUST:
+    //     if (record->event.pressed) {
+    //       layer_on(_ADJUST);
+    //     } else {
+    //       layer_off(_ADJUST);
+    //     }
+    //     return false;
+    //     break;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
