@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 TT(MDIA),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                                      KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
 GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LGUI(KC_ENTER),                             LGUI(KC_X),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
 KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    KC_AUDIO_MUTE, SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
-           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SFT_T(KC_DEL),                                        SFT_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
+           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SGUI_T(KC_DEL),                                        SGUI_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
 
 /* Keymap 1: Symbols layer
  *
@@ -64,7 +64,7 @@ KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_C
  *                                        |       |                     |       |
  *                                 ,------|-------|                     |-------|------.
  *                                 |      |       |                     |       |      |
- *                                 | space|       |                     |  space|      |
+ *                                 | space|       |                     |       | space|
  *                                 |      |       |                     |       |      |
  *                                 `--------------'                     `--------------'
  */
@@ -145,7 +145,7 @@ _______, _______, _______, _______,                                           __
  *                                        |       |       |       |
  *                                 ,------|-------|       |-------|------.
  *                                 |      |       |       |       |      |
- *                                 | Prev |  Next |       |  Stop |Play/P|
+ *                                 |      |       |       |       |      |
  *                                 |      |       |       |       |      |
  *                                `--------------'       `--------------'
  */
@@ -154,7 +154,7 @@ _______, _______, _______, _______,                                           __
 _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,                                         KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,   _______, 
 _______, _______, _______, _______, _______, _______, KC_F11,                       KC_F12,  _______, KC_MEDIA_PREV_TRACK, KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, _______, 
 _______, _______, _______, _______, _______, _______, _______, _______,             _______,  _______,  _______, _______, _______, _______, _______, KC_AUDIO_MUTE,
- _______, _______, _______, _______,                                                KC_MEDIA_STOP, KC_MEDIA_PLAY_PAUSE,KC_VOLD, KC_VOLU),
+ _______, _______, _______, _______,                                                _______, _______,KC_VOLD, KC_VOLU),
  
 /* Keymap template 
  *
