@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 #define SSD1306OLED
 #define IGNORE_MOD_TAP_INTERRUPT
+#define PERMISSIVE_HOLD
 #define USE_SERIAL_PD2
 
 #define MOUSEKEY_INTERVAL 20
