@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LT(MEDIA, KC_DEL), KC_Q, KC_W, KC_E, KC_R, KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
   GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(ARROW,KC_F), KC_G,                    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, GUI_T(KC_QUOT), \
   KC_LSPO, LCTL_T(KC_Z), LALT_T(KC_X), KC_C, LT(MOUSE, KC_V), KC_B, KC_AUDIO_MUTE,    LGUI(KC_X),    KC_N, KC_M, KC_COMM, RALT_T(KC_DOT), RCTL_T(KC_SLSH), KC_RSPC, \
-        LGUI(KC_ENT), KC_LCTL, MO(NUM), LT(SYMB, KC_BSPC),      SGUI_T(KC_ENT),   LT(SYMB, KC_SPC),   LT(ADJUST, KC_ESC), KC_TAB \
+        LGUI(KC_ENT), KC_LCTL, MO(NUM), LT(SYMB, KC_BSPC),       LT(SYMB, KC_SPC), SGUI_T(KC_ENT),   LT(ADJUST, KC_ESC), KC_TAB \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                      KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, \
  _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,               KC_UNDS, KC_LPRN, KC_RPRN, KC_DLR, KC_COLN, KC_DQUO, \
   _______, KC_QUOT,  KC_COMMA,  KC_DOT,  KC_GRAVE,  KC_PLUS,  _______, _______, KC_TILD, KC_PIPE, KC_LABK, KC_RABK, KC_SLASH, _______, \
-                             _______, _______, _______, KC_SPC, _______,  KC_SPC, _______, _______\
+                             _______, _______, _______, KC_SPC, KC_SPC,  _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______, _______, _______, _______,                               _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, \
   _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______,                                _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, _______, \
    _______, _______, _______, _______, _______, _______,        _______, _______,        _______, _______, _______, _______, _______, _______, \
-                             _______, _______,  _______, KC_BTN2,                           _______, KC_BTN1, KC_BTN3, _______ \
+                             _______, _______,  _______, KC_BTN2,                           KC_BTN1, KC_BTN3, _______, _______ \
 ),
 
 [MEDIA] = LAYOUT( \
