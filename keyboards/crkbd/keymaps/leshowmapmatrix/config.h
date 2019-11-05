@@ -21,19 +21,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 //#define USE_MATRIX_I2C
-#define USE_SERIAL
+// #define USE_SERIAL
+#define USE_SERIAL_PD2
 
 /* Select hand configuration */
+#define IGNORE_MOD_TAP_INTERRUPT
+#define PERMISSIVE_HOLD
+
+#define MOUSEKEY_INTERVAL 20
+#define MOUSEKEY_DELAY 0
+#define MOUSEKEY_TIME_TO_MAX 60
+#define MOUSEKEY_MAX_SPEED 7
+#define MOUSEKEY_WHEEL_DELAY 0
 
 // #define MASTER_LEFT
 // #define MASTER_RIGHT
 #define EE_HANDS
 
-// lower maximum brightness to lower power usage and prevent unresponsiveness
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
 #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
 
 #define RGB_MATRIX_KEYPRESSES
+// #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
+// #   define RGB_DISABLE_AFTER_TIMEOUT 0 // number of ticks to wait until disabling effects
+#    define RGB_DISABLE_WHEN_USB_SUSPENDED true  // turn off effects when suspended
+// #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+// #   define RGB_MATRIX_LED_PROCESS_LIMIT (DRIVER_LED_TOTAL + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
+// #   define RGB_MATRIX_LED_FLUSH_LIMIT 16 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180  // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+#    define RGB_MATRIX_HUE_STEP 8
+#    define RGB_MATRIX_SAT_STEP 8
+#    define RGB_MATRIX_VAL_STEP 8
+#    define RGB_MATRIX_SPD_STEP 10
 
 //disable effects
 #define DISABLE_RGB_MATRIX_ALPHAS_MODS         // Static dual hue speed is hue for secondary hue
@@ -65,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS      // Hue & value pulse away on the same column and row of a single key hit then fades value out
 // #define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS // Hue & value pulse away on the same column and row of multiple key hits then fades value out
 // #define DISABLE_RGB_MATRIX_SPLASH              // Full gradient & value pulse away from a single key hit then fades value out
-#define DISABLE_RGB_MATRIX_MULTISPLASH         // Full gradient & value pulse away from multiple key hits then fades value out
-#define DISABLE_RGB_MATRIX_SOLID_SPLASH        // Hue & value pulse away from a single key hit then fades value out
-#define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH   // Hue & value pulse away from multiple key hits then fades value out
+// #define DISABLE_RGB_MATRIX_MULTISPLASH         // Full gradient & value pulse away from multiple key hits then fades value out
+// #define DISABLE_RGB_MATRIX_SOLID_SPLASH        // Hue & value pulse away from a single key hit then fades value out
+// #define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH   // Hue & value pulse away from multiple key hits then fades value out
 #define DISABLE_RGB_MATRIX_EFFECT_MAX

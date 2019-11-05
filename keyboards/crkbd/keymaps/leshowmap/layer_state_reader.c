@@ -17,28 +17,28 @@ char layer_state_str[24];
 const char *read_layer_state(void) {
     switch (layer_state) {
         case L_BASE:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Default");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Default");
             break;
         case L_SYMB:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Symbol");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Symbol");
             break;
         case L_ARROW:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Arrow");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Arrow");
             break;
         case L_MOUSE:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Mouse");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Mouse");
             break;
         case L_MEDIA:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Media");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Media");
             break;
         case L_NUM:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Num");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Num");
             break;
         case L_ADJUST:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Adjust");
+            snprintf(layer_state_str, sizeof(layer_state_str), "Adjust");
             break;
         default:
-            snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state);
+            snprintf(layer_state_str, sizeof(layer_state_str), "Undef-%ld", layer_state);
     }
 
     return layer_state_str;
