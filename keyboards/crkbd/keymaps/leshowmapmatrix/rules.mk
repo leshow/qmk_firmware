@@ -13,4 +13,4 @@ NKRO_ENABLE      = yes # USB Nkey Rollover - if this doesn't work, see here: htt
 RGB_MATRIX_ENABLE = WS2812
 
 # using elite-c controllers
-BOOTLOADER = qmk-dfu
+# BOOTLOADER = qmk-dfu
