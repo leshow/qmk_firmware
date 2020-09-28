@@ -18,6 +18,8 @@ extern uint8_t is_master;
 #define S_BSPC LT(_SYMB, KC_BSPC)
 #define MEDIA LT(_MEDIA, KC_DEL)
 #define ADJUST LT(_ADJUST, KC_ESC)
+#define QWERTY DF(_QWERTY)
+#define DEFAULT DF(_DEFAULT)
 // i3
 #define GQUOT GUI_T(KC_QUOT)
 #define GTAB GUI_T(KC_TAB)
@@ -40,7 +42,8 @@ enum crkbd_layers {
   _MOUSE,
   _MEDIA,
   _NUM,
-  _ADJUST
+  _ADJUST,
+  _QWERTY
 };
  // -- CONSIDER KC_SFTENT in place of RSPC??
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -113,7 +116,7 @@ _______, _______, _______, _______, _______, _______,      _______, _______, ___
   //,-----------------------------------------.                ,-----------------------------------------.
   _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,        KC_EQUAL,KC_7, KC_8,  KC_9, KC_EXLM, _______, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  KC_UNDS, KC_4, KC_5, KC_6, KC_COLN, _______, \
+_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  KC_UNDS, KC_4, KC_5, KC_6, KC_COLN, KC_DQUO, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
 _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_3, _______, _______, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -131,8 +134,19 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, KC_NO,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                             KC_NO, KC_NO, KC_NO,                KC_NO, KC_NO, KC_NO \
-  )
+                             QWERTY, KC_NO, KC_NO,                KC_NO, KC_NO, KC_NO \
+  ),
+     [_QWERTY] = LAYOUT( \
+ //,-----------------------------------------.                ,-----------------------------------------.
+     KC_DEL, KC_Q, KC_W, KC_E, KC_R, KC_T,                     KC_Y, KC_U, KC_I, KC_O, KC_P, DEFAULT,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+     KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G,          KC_H, KC_J, KC_K, KC_L, KC_SCLN, GQUOT,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+    KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B,           KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSPC,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+              KC_LCTL, KC_SPC, KC_ENT,            KC_BSPC,  KC_ENT, KC_ESC \
+                                       //`--------------------'  `--------------------'
+     )
 };
 
 // uint32_t layer_state_set_user(uint32_t state) {
@@ -169,6 +183,9 @@ void oled_task_user(void){
             break;
         case _ADJUST:
             oled_write_ln_P(PSTR("ADJST"), false);
+            break;
+        case _QWERTY:
+            oled_write_ln_P(PSTR("QWERTY"), false);
             break;
         default:
             oled_write_ln_P(PSTR("?????"), false);

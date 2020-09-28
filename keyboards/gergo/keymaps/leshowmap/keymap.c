@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 LT(MDIA, KC_DEL),       KC_Q,  KC_W,   KC_E,   KC_R, KC_T,                                                      KC_Y,    KC_U, KC_I, KC_O,   KC_P,   KC_BSPC, 
 GUI_T(KC_TAB),  KC_A,  KC_S,   KC_D, LT(ARRW, KC_F), KC_G,  LGUI(KC_ENTER),                             LGUI(KC_X),  KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, GUI_T(KC_QUOT), 
 KC_LSPO,    CTL_T(KC_Z),  ALT_T(KC_X),   KC_C, LT(NUMB, KC_V), KC_B, SCMD_T(KC_CAPSLOCK), KC_INSERT,    KC_AUDIO_MUTE, SCMD_T(KC_CAPSLOCK),  KC_N, KC_M, KC_COMM, ALT_T(KC_DOT), CTL_T(KC_SLSH), KC_RSPC, 
-           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SGUI_T(KC_DEL),                                        SGUI_T(KC_ENT), LT(SYMB, KC_SPC), KC_ESC, KC_TAB),
+           KC_LCTL, MO(NUM),  LT(SYMB, KC_BSPC),  SGUI_T(KC_DEL),                                        SGUI_T(KC_ENT), LT(SYMB, KC_SPC), SGUI_T(KC_ENT), KC_ESC),
 
 /* Keymap 1: Symbols layer
  *
@@ -206,7 +206,7 @@ _______, _______, _______, _______, _______, _______, _______, _______,         
 
 [NUM] = LAYOUT_gergo(  
 _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                         KC_EQUAL, KC_7, KC_8, KC_9, KC_EXLM, _______, 
-_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET,  KC_MINUS,_______,                _______,  KC_UNDS, KC_4, KC_5, KC_6, _______, _______,
+_______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET,  KC_MINUS,_______,                _______,  KC_UNDS, KC_4, KC_5, KC_6, KC_COLN, KC_DQUO,
 _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,  _______,_______,       _______, _______,   KC_0, KC_1, KC_2, KC_3, _______, _______, 
 _______,    _______, _______, _______,                                          _______, _______, KC_0, _______),
 /* Keymap template 

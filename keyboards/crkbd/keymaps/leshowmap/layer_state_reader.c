@@ -11,6 +11,7 @@
 #define L_MEDIA 16
 #define L_NUM 32
 #define L_ADJUST 64
+#define L_QWERTY 128
 
 char layer_state_str[24];
 
@@ -36,6 +37,9 @@ const char *read_layer_state(void) {
             break;
         case L_ADJUST:
             snprintf(layer_state_str, sizeof(layer_state_str), "Adjust");
+            break;
+        case L_QWERTY:
+            snprintf(layer_state_str, sizeof(layer_state_str), "QWERTY");
             break;
         default:
             snprintf(layer_state_str, sizeof(layer_state_str), "Undef-%ld", layer_state);
