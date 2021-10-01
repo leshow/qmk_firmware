@@ -30,6 +30,7 @@ extern uint8_t is_master;
 #define RALTD RALT_T(KC_DOT)
 #define LALTX LALT_T(KC_X)
 #define ESC_CTL LCTL_T(KC_ESC)
+#define CTL_NUM LT(_MEDIA, KC_LCTL)
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -142,7 +143,7 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
      KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G,          KC_H, KC_J, KC_K, KC_L, KC_SCLN, GQUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    KC_LSHFT, KC_Z, KC_X, KC_C, KC_V, KC_B,           KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSHFT,\
+    KC_LSHIFT, KC_Z, KC_X, KC_C, KC_V, KC_B,           KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSHIFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
               KC_LCTL, KC_SPC, KC_ENT,            KC_BSPC,  KC_ENT, KC_ESC \
                                        //`--------------------'  `--------------------'
