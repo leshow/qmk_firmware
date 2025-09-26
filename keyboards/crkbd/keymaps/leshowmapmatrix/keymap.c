@@ -11,7 +11,7 @@ extern rgblight_config_t rgblight_config;
 extern uint8_t is_master;
 
 // layer keys
-#define NUM MO(_NUM)
+#define NUM LT(_NUM, KC_DEL)
 #define ARROW LT(_ARROW, KC_F)
 #define MOUSE LT(_MOUSE, KC_V)
 #define S_SPC LT(_SYMB, KC_SPC)
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       KC_LSPO, LCTLZ, LALTX, KC_C, MOUSE, KC_B,                 KC_N, KC_M, KC_COMM, RALTD, RCTLS, KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                ESC_CTL, NUM, S_BSPC,    S_SPC,  SGENT, ADJUST \
+                                ESC_CTL, NUM, S_SPC,    S_BSPC,  SGENT, ADJUST \
                              //`-----------------------'  `----------------------'
   ),
 
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              _______,  _______, KC_BTN2,             KC_BTN1, KC_BTN3, _______  \
                              //`-----------------------'  `----------------------'
   ),
-  
+
 
 
   [_MEDIA] = LAYOUT( \

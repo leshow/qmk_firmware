@@ -20,7 +20,7 @@ extern uint8_t is_master;
 #define MOUSE 3  // directional + nav
 #define MEDIA 4  // volume + playback
 #define NUM 5   // NUM LAYER
-#define ADJUST 6 // adjustment layer 
+#define ADJUST 6 // adjustment layer
 
 enum custom_keycodes
 {
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   KC_LSPO, LCTL_T(KC_Z), LALT_T(KC_X), KC_C, LT(MOUSE, KC_V), KC_B,           KC_N, KC_M, KC_COMM, RALT_T(KC_DOT), RCTL_T(KC_SLSH), KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-              LCTL_T(KC_ESC), MO(NUM), LT(SYMB, KC_BSPC),            LT(SYMB,KC_SPC),  SGUI_T(KC_ENT), LT(ADJUST,KC_ESC) \
+              LCTL_T(KC_ESC), LT(NUM, KC_TAB), LT(SYMB, KC_BSPC),            LT(SYMB,KC_SPC),  SGUI_T(KC_ENT), LT(ADJUST,KC_ESC) \
                                        //`--------------------'  `--------------------'
   ),
 

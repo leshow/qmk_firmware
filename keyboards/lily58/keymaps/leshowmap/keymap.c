@@ -24,7 +24,7 @@ extern uint8_t is_master;
 #define MOUSE 3  // directional + nav
 #define MEDIA 4  // volume + playback
 #define NUM 5   // NUM LAYER
-#define ADJUST 6 // adjustment layer 
+#define ADJUST 6 // adjustment layer
 #define QWERTY 7 // qwerty layer for gaming
 
 enum custom_keycodes
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LT(MEDIA, KC_DEL), KC_Q, KC_W, KC_E, KC_R, KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
   GUI_T(KC_TAB), KC_A, KC_S, KC_D, LT(ARROW,KC_F), KC_G,                    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, GUI_T(KC_QUOT), \
   KC_LSPO, LCTL_T(KC_Z), LALT_T(KC_X), KC_C, LT(MOUSE, KC_V), KC_B, KC_AUDIO_MUTE,    LGUI(KC_X),    KC_N, KC_M, KC_COMM, RALT_T(KC_DOT), RCTL_T(KC_SLSH), KC_RSPC, \
-        LGUI(KC_ENT), LCTL_T(KC_ESC), MO(NUM), LT(SYMB, KC_BSPC),       LT(SYMB, KC_SPC), SGUI_T(KC_ENT),   LT(ADJUST, KC_ESC), KC_TAB \
+        LGUI(KC_ENT), LCTL_T(KC_ESC), LT(NUM, KC_TAB), LT(SYMB, KC_BSPC),       LT(SYMB, KC_SPC), SGUI_T(KC_ENT),   LT(ADJUST, KC_ESC), KC_TAB \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -248,7 +248,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
-   if (index == 0) { 
+   if (index == 0) {
     if (clockwise) {
       tap_code(KC_VOLD);
     } else {
