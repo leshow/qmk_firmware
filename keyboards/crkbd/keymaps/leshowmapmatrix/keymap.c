@@ -31,6 +31,10 @@ extern uint8_t is_master;
 #define LALTX LALT_T(KC_X)
 #define ESC_CTL LCTL_T(KC_ESC)
 #define CTL_NUM LT(_MEDIA, KC_LCTL)
+// homerow mods
+#define S_A LSFT_T(KC_A)
+#define S_SCLN RSFT_T(KC_SCLN)
+
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -52,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------.                ,-----------------------------------------.
      MEDIA, KC_Q, KC_W, KC_E, KC_R, KC_T,                       KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      GTAB, KC_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, KC_SCLN, GQUOT,\
+      GTAB, S_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, S_SCLN, GQUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       KC_LSPO, LCTLZ, LALTX, KC_C, MOUSE, KC_B,                 KC_N, KC_M, KC_COMM, RALTD, RCTLS, KC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -121,7 +125,7 @@ _______, KC_BSLASH, KC_AMPR, KC_LBRACKET, KC_RBRACKET, KC_MINUS,  KC_UNDS, KC_4,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
 _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_3, _______, _______, \
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                               _______, _______, _______,     _______, KC_0, _______ \
+                               _______, _______, _______,     KC_SPC, KC_0, _______ \
                              //`-----------------------'  `----------------------'
   ),
 
