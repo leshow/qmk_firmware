@@ -20,3 +20,16 @@ qmk flash -kb crkbd -km leshowmapmatrix -bl uf2-split-left
 ```
 
 mount RPI2 usb device and it should flash
+
+## development
+
+- enable clangd language server
+- run:
+
+```bash
+qmk compile -kb crkbd -km leshowmapmatrix --compiledb
+```
+
+- reload language server
+
+errors should have gone away now

@@ -46,6 +46,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
 
+// caps word
+#ifdef CAPS_WORD_ENABLE
+    #define CAPS_WORD_INVERT_ON_SHIFT
+    #define CAPS_WORD_IDLE_TIMEOUT 3000  // 3 seconds
+#endif
+
+// rgb
 #ifdef RGB_MATRIX_ENABLE
     #undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180  // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
@@ -102,6 +109,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define ENABLE_RGB_MATRIX_PIXEL_RAIN
     #define ENABLE_RGB_MATRIX_PIXEL_FLOW
     #define ENABLE_RGB_MATRIX_PIXEL_FRACTAL
+    #define ENABLE_RGB_MATRIX_CYCLE_FLOWER_BLOOMING
+    #define ENABLE_RGB_MATRIX_STARLIGHT
+    #define ENABLE_RGB_MATRIX_STARLIGHT_SMOOTH
+    #define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_HUE
+    #define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_SAT
+    #define ENABLE_RGB_MATRIX_RIVERFLOW
     // enabled only if RGB_MATRIX_FRAMEBUFFER_EFFECTS is defined
     // #    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
     // #    define ENABLE_RGB_MATRIX_DIGITAL_RAIN

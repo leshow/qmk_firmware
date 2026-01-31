@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------.                ,-----------------------------------------.
     _______, _______, _______, _______, _______, _______,                 _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    _______, _______, _______, _______, _______, _______,                  _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, \
+    _______, _______, _______, _______, _______, _______,                  _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, CW_TOGG, \
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     _______, _______, _______, _______, _______, _______,                 KC_INS, KC_CAPS_LOCK, _______, _______, _______, _______, \
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -305,6 +305,9 @@ bool oled_task_user(void) {
         oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
         oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
         oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+        #ifdef CAPS_WORD_ENABLE
+            oled_write_P(is_caps_word_on() ? PSTR("WORD ") : PSTR("    "), false);
+        #endif
         // oled_render_keylog();
         // oled_render_logo();
     } else {
@@ -315,4 +318,25 @@ bool oled_task_user(void) {
     return false;
 }
 
+#endif
+
+#ifdef CAPS_WORD_ENABLE
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_MINS:
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
 #endif
