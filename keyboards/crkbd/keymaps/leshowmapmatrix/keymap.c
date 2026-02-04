@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define S_BSPC LT(_SYMB, KC_BSPC)
 #define MEDIA LT(_MEDIA, KC_DEL)
 #define ADJUST LT(_ADJUST, KC_ESC)
-#define QWERTY DF(_QWERTY)
+#define QWERTY TO(_QWERTY)
 #define DEFAULT DF(_DEFAULT)
 // i3
 #define GQUOT GUI_T(KC_QUOT)
@@ -37,7 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RCTLS LCTL_T(KC_SLSH)
 #define RALTD RALT_T(KC_DOT)
 #define LALTX LALT_T(KC_X)
-#define ESC_CTL LCTL_T(KC_ESC)
+#define ESC_SFT LSFT_T(KC_ESC)
+#define ESC_CTRL LCTL_T(KC_ESC)
 #define CTL_NUM LT(_MEDIA, KC_LCTL)
 // homerow mods
 #define S_A LSFT_T(KC_A)
@@ -63,11 +64,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------.                ,-----------------------------------------.
      MEDIA, KC_Q, KC_W, KC_E, KC_R, KC_T,                       KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      GTAB, S_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, S_SCLN, GQUOT,\
+      GTAB, KC_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, KC_SCLN, GQUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       SC_LSPO, LCTLZ, LALTX, KC_C, MOUSE, KC_B,                 KC_N, KC_M, KC_COMM, RALTD, RCTLS, SC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                ESC_CTL, NUM, S_SPC,    S_BSPC,  SGENT, ADJUST \
+                                ESC_SFT, NUM, S_SPC,    S_BSPC,  SGENT, ADJUST \
                              //`-----------------------'  `----------------------'
   ),
 
