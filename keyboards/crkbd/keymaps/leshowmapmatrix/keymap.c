@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       SC_LSPO, LCTLZ, LALTX, KC_C, MOUSE, KC_B,                 KC_N, KC_M, KC_COMM, RALTD, RCTLS, SC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                ESC_SFT, NUM, S_SPC,    S_BSPC,  SGENT, ADJUST \
+                                ESC_CTRL, NUM, S_SPC,    S_BSPC,  SGENT, ADJUST \
                              //`-----------------------'  `----------------------'
   ),
 
