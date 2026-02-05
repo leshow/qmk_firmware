@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MEDIA LT(_MEDIA, KC_DEL)
 #define ADJUST LT(_ADJUST, KC_ESC)
 #define QWERTY TO(_QWERTY)
-#define DEFAULT DF(_DEFAULT)
+#define DEFAULT TO(_DEFAULT)
 // i3
 #define GQUOT GUI_T(KC_QUOT)
 #define GTAB GUI_T(KC_TAB)
