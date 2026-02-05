@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------.                ,-----------------------------------------.
      MEDIA, KC_Q, KC_W, KC_E, KC_R, KC_T,                       KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      GTAB, KC_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, KC_SCLN, GQUOT,\
+      GTAB, S_A, KC_S, KC_D, ARROW, KC_G,                        KC_H, KC_J, KC_K, KC_L, S_SCLN, GQUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       SC_LSPO, LCTLZ, LALTX, KC_C, MOUSE, KC_B,                 KC_N, KC_M, KC_COMM, RALTD, RCTLS, SC_RSPC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
