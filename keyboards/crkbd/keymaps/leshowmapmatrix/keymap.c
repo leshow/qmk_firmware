@@ -72,7 +72,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              //`-----------------------'  `----------------------'
   ),
 
-
   [_SYMB] = LAYOUT_split_3x6_3( \
  //,-----------------------------------------.                ,-----------------------------------------.
       _______, KC_QUES, KC_CIRC, KC_PERC, KC_HASH, KC_ASTR,                  KC_EQUAL, KC_LCBR, KC_RCBR, KC_AT, KC_EXLM, _______, \
@@ -109,8 +108,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              //`-----------------------'  `----------------------'
   ),
 
-
-
   [_MEDIA] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
 XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,                  KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,  XXXXXXX, \
@@ -122,8 +119,6 @@ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, XXXXXXX, XXX
                              XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, KC_VOLD, KC_VOLU \
                              //`-----------------------'  `----------------------'
   ),
-
-
 
   [_NUM] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
@@ -137,8 +132,6 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_
                              //`-----------------------'  `----------------------'
   ),
 
-
-
   [_ADJUST] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
     QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                 KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, QK_BOOT,\
@@ -149,7 +142,8 @@ _______, KC_QUOT, KC_COMMA, KC_DOT, KC_GRAVE, KC_PLUS,     KC_0, KC_1, KC_2, KC_
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                              QWERTY, KC_NO, KC_NO,                KC_NO, KC_NO, KC_NO \
   ),
-     [_QWERTY] = LAYOUT_split_3x6_3( \
+
+  [_QWERTY] = LAYOUT_split_3x6_3( \
  //,-----------------------------------------.                ,-----------------------------------------.
      KC_DEL, KC_Q, KC_W, KC_E, KC_R, KC_T,                     KC_Y, KC_U, KC_I, KC_O, KC_P, DEFAULT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -258,43 +252,43 @@ bool oled_task_user(void) {
     if (is_keyboard_master()) {
         switch (get_highest_layer(layer_state)) {
             case _DEFAULT:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("|"), false);
                 oled_write_ln_P(PSTR("DEFAULT"), false);
                 break;
             case _SYMB:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("  ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("  |"), false);
                 oled_write_ln_P(PSTR("SYMBOL"), false);
                 break;
             case _NUM:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("    ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("    |"), false);
                 oled_write_ln_P(PSTR("NUM"), false);
                 break;
             case _ARROW:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("      ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("      |"), false);
                 oled_write_ln_P(PSTR("ARROW"), false);
                 break;
             case _MOUSE:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("        ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("        |"), false);
                 oled_write_ln_P(PSTR("MOUSE"), false);
                 break;
             case _MEDIA:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("          ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("          |"), false);
                 oled_write_ln_P(PSTR("MEDIA"), false);
                 break;
             case _ADJUST:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("            ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("            |"), false);
                 oled_write_ln_P(PSTR("ADJUST"), false);
                 break;
             case _QWERTY:
-                oled_write_ln_P(PSTR("1 2 3 4 5 6 7 8"), false);
-                oled_write_ln_P(PSTR("              ^"), false);
+                oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
+                oled_write_ln_P(PSTR("              |"), false);
                 oled_write_ln_P(PSTR("GAMING"), false);
                 break;
             default:
