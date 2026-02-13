@@ -41,7 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ESC_CTRL LCTL_T(KC_ESC)
 #define CTL_NUM LT(_MEDIA, KC_LCTL)
 // homerow mods
+#define S_L LSFT_T(KC_L)
 #define S_A LSFT_T(KC_A)
+#define S_D RSFT_T(KC_D)
 #define S_SCLN RSFT_T(KC_SCLN)
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -168,12 +170,15 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 #ifdef OLED_ENABLE
 
-// oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
+// @TODO try 270 flip?
+// oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 //     if (!is_keyboard_master()) {
-//         return OLED_ROTATION_180; // flips the display 180 degrees if offhand
+//         return OLED_ROTATION_90; // original flip is 180 for master
+//     } else {
+//         return OLED_ROTATION_180;
 //     }
-//     return rotation;
 // }
+
 
 // char     key_name = ' ';
 // uint16_t last_keycode;
@@ -253,48 +258,49 @@ bool oled_task_user(void) {
         switch (get_highest_layer(layer_state)) {
             case _DEFAULT:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("|"), false);
+                oled_write_ln_P(PSTR("^"), false);
                 oled_write_ln_P(PSTR("DEFAULT"), false);
                 break;
             case _SYMB:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("  |"), false);
+                oled_write_ln_P(PSTR("  ^"), false);
                 oled_write_ln_P(PSTR("SYMBOL"), false);
                 break;
             case _NUM:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("    |"), false);
+                oled_write_ln_P(PSTR("    ^"), false);
                 oled_write_ln_P(PSTR("NUM"), false);
                 break;
             case _ARROW:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("      |"), false);
+                oled_write_ln_P(PSTR("      ^"), false);
                 oled_write_ln_P(PSTR("ARROW"), false);
                 break;
             case _MOUSE:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("        |"), false);
+                oled_write_ln_P(PSTR("        ^"), false);
                 oled_write_ln_P(PSTR("MOUSE"), false);
                 break;
             case _MEDIA:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("          |"), false);
+                oled_write_ln_P(PSTR("          ^"), false);
                 oled_write_ln_P(PSTR("MEDIA"), false);
                 break;
             case _ADJUST:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("            |"), false);
+                oled_write_ln_P(PSTR("            ^"), false);
                 oled_write_ln_P(PSTR("ADJUST"), false);
                 break;
             case _QWERTY:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
-                oled_write_ln_P(PSTR("              |"), false);
+                oled_write_ln_P(PSTR("              ^"), false);
                 oled_write_ln_P(PSTR("GAMING"), false);
                 break;
             default:
                 oled_write_ln_P(PSTR("Unknown"), false);
                 break;
         }
+
         // Host Keyboard LED Status
         led_t led_state = host_keyboard_led_state();
         oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
