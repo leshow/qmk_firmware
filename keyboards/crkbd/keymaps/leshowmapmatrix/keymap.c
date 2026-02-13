@@ -173,71 +173,84 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // @TODO try 270 flip?
 // oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 //     if (!is_keyboard_master()) {
-//         return OLED_ROTATION_90; // original flip is 180 for master
+//         return OLED_ROTATION_9080; // original flip is 180 for master
 //     } else {
 //         return OLED_ROTATION_180;
 //     }
 // }
 
+char     keylog_key_name = ' ';
+uint16_t last_keycode;
+uint8_t  last_row;
+uint8_t  last_col;
 
-// char     key_name = ' ';
-// uint16_t last_keycode;
-// uint8_t  last_row;
-// uint8_t  last_col;
+static const char PROGMEM code_to_name[60] = {' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\', '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
-// static const char PROGMEM code_to_name[60] = {' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\', '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
+static void set_keylog(uint16_t keycode, keyrecord_t *record) {
+    // save the row and column (useful even if we can't find a keycode to show)
+    last_row = record->event.key.row;
+    last_col = record->event.key.col;
 
-// static void set_keylog(uint16_t keycode, keyrecord_t *record) {
-//     // save the row and column (useful even if we can't find a keycode to show)
-//     last_row = record->event.key.row;
-//     last_col = record->event.key.col;
+    keylog_key_name     = ' ';
+    last_keycode = keycode;
+    if (IS_QK_MOD_TAP(keycode)) {
+        if (record->tap.count) {
+            keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+        } else {
+            keycode = 0xE0 + biton(QK_MOD_TAP_GET_MODS(keycode) & 0xF) + biton(QK_MOD_TAP_GET_MODS(keycode) & 0x10);
+        }
+    } else if (IS_QK_LAYER_TAP(keycode) && record->tap.count) {
+        keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
+    } else if (IS_QK_MODS(keycode)) {
+        keycode = QK_MODS_GET_BASIC_KEYCODE(keycode);
+    } else if (IS_QK_ONE_SHOT_MOD(keycode)) {
+        keycode = 0xE0 + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0xF) + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0x10);
+    }
+    if (keycode > ARRAY_SIZE(code_to_name)) {
+        return;
+    }
 
-//     key_name     = ' ';
-//     last_keycode = keycode;
-//     if (IS_QK_MOD_TAP(keycode)) {
-//         if (record->tap.count) {
-//             keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
-//         } else {
-//             keycode = 0xE0 + biton(QK_MOD_TAP_GET_MODS(keycode) & 0xF) + biton(QK_MOD_TAP_GET_MODS(keycode) & 0x10);
-//         }
-//     } else if (IS_QK_LAYER_TAP(keycode) && record->tap.count) {
-//         keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
-//     } else if (IS_QK_MODS(keycode)) {
-//         keycode = QK_MODS_GET_BASIC_KEYCODE(keycode);
-//     } else if (IS_QK_ONE_SHOT_MOD(keycode)) {
-//         keycode = 0xE0 + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0xF) + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0x10);
-//     }
-//     if (keycode > ARRAY_SIZE(code_to_name)) {
-//         return;
-//     }
-
-//     // update keylog
-//     key_name = pgm_read_byte(&code_to_name[keycode]);
-// }
+    // update keylog
+    keylog_key_name = pgm_read_byte(&code_to_name[keycode]);
+}
 
 // static const char *depad_str(const char *depad_str, char depad_char) {
 //     while (*depad_str == depad_char)
 //         ++depad_str;
 //     return depad_str;
 // }
-
 // static void oled_render_keylog(void) {
+//     // Full keylog format split across lines
 //     oled_write_char('0' + last_row, false);
 //     oled_write_P(PSTR("x"), false);
 //     oled_write_char('0' + last_col, false);
-//     oled_write_P(PSTR(", k"), false);
+//     oled_write_ln_P(PSTR(""), false);
+
+//     oled_write_P(PSTR("k"), false);
 //     const char *last_keycode_str = get_u16_str(last_keycode, ' ');
 //     oled_write(depad_str(last_keycode_str, ' '), false);
 //     oled_write_P(PSTR(":"), false);
-//     oled_write_char(key_name, false);
-//     oled_advance_page(true);
+//     oled_write_char(keylog_key_name, false);
+//     oled_write_ln_P(PSTR(""), false);
 // }
-//  bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-//     if (record->event.pressed) {
-//         set_keylog(keycode, record);
-//     }
-//     return process_record_user(keycode, record);
-// }
+static void oled_render_keylog(void) {
+    // oled_write_char('0' + last_row, false);
+    // oled_write_P(PSTR("x"), false);
+    // oled_write_char('0' + last_col, false);
+    oled_write_P(PSTR("k"), false);
+    // const char *last_keycode_str = get_u16_str(last_keycode, ' ');
+    // oled_write(depad_str(last_keycode_str, ' '), false);
+    oled_write_P(PSTR(":"), false);
+    oled_write_char(keylog_key_name, false);
+    // oled_advance_page(true);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        set_keylog(keycode, record);
+    }
+    return true;
+}
 
 
 
@@ -252,8 +265,6 @@ void oled_render_logo(void) {
 }
 
 bool oled_task_user(void) {
-    // oled_write_P(PSTR("Layer: "), false);
-    // Host Keyboard LED Status
     if (is_keyboard_master()) {
         switch (get_highest_layer(layer_state)) {
             case _DEFAULT:
@@ -305,14 +316,13 @@ bool oled_task_user(void) {
         led_t led_state = host_keyboard_led_state();
         oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
         oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-        oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+        // oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
         #ifdef CAPS_WORD_ENABLE
-            oled_write_P(is_caps_word_on() ? PSTR("WORD ") : PSTR("    "), false);
+            oled_write_P(is_caps_word_on() ? PSTR("WRD ") : PSTR("    "), false);
         #endif
-        // oled_render_keylog();
-        // oled_render_logo();
+        oled_write_P(PSTR("    "), false);
+        oled_render_keylog();
     } else {
-        // oled_render_logo();
         oled_render_logo();
     }
 
