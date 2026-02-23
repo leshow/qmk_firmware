@@ -4,6 +4,8 @@ BOOTLOADER = rp2040
 RGB_LIGHT_ENABLE = no
 # caps word
 CAPS_WORD_ENABLE = yes
+# repeat key
+REPEAT_KEY_ENABLE = yes
 
 RGB_MATRIX_SUPPORTED = yes
 RGB_MATRIX_ENABLE = yes
