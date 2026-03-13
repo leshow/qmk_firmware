@@ -47,6 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
 
+// comment out for horizontal oled orientation
+#define VERTICAL 1
+
 // caps word
 #ifdef CAPS_WORD_ENABLE
     #define CAPS_WORD_INVERT_ON_SHIFT

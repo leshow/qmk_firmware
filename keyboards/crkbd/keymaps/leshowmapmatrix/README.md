@@ -12,7 +12,7 @@ qmk compile -kb crkbd -km leshowmapmatrix
 
 ## flash
 
-if using EE_HANDS:
+if using `EE_HANDS`:
 
 ```bash
 qmk flash -kb crkbd -km leshowmapmatrix -bl uf2-split-right
@@ -20,6 +20,12 @@ qmk flash -kb crkbd -km leshowmapmatrix -bl uf2-split-left
 ```
 
 mount RPI2 usb device and it should flash
+
+To flash **default** layout:
+
+```bash
+qmk flash -kb crkbd -km default -e CONVERT_TO=rp2040_ce
+```
 
 ## development
 

@@ -185,14 +185,17 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 #ifdef OLED_ENABLE
 
-// @TODO try 270 flip?
-// oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-//     if (!is_keyboard_master()) {
-//         return OLED_ROTATION_9080; // original flip is 180 for master
-//     } else {
-//         return OLED_ROTATION_180;
-//     }
-// }
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (is_keyboard_master()) {
+        #if defined(VERTICAL) && VERTICAL == 1
+        return OLED_ROTATION_270;
+        #else
+        return OLED_ROTATION_180;
+        #endif
+    } else {
+        return OLED_ROTATION_0;
+    }
+}
 
 char     keylog_key_name = ' ';
 uint16_t last_keycode;
@@ -279,8 +282,95 @@ void oled_render_logo(void) {
     oled_write_P(qmk_logo, false);
 }
 
-bool oled_task_user(void) {
-    if (is_keyboard_master()) {
+void print_layer_lines_vert(void) {
+    switch (get_highest_layer(layer_state)) {
+        case _DEFAULT:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR("^"), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("DFLT"), false);
+            break;
+        case _SYMB:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR(" ^"), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("SYMBL"), false);
+            break;
+        case _NUM:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR("  ^"), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("NUM"), false);
+            break;
+        case _ARROW:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR("   ^"), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("ARROW"), false);
+            break;
+        case _MOUSE:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR("^"), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("MOUSE"), false);
+            break;
+        case _MEDIA:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR(" ^"), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("MEDIA"), false);
+            break;
+        case _ADJUST:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR("  ^"), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("ADJST"), false);
+            break;
+        case _QWERTY:
+            oled_write_ln_P(PSTR("0123"), false);
+            oled_write_ln_P(PSTR(""), false);
+            oled_write_ln_P(PSTR("4567"), false);
+            oled_write_ln_P(PSTR("   ^"), false);
+            oled_write_ln_P(PSTR("-----"), false);
+            oled_write_ln_P(PSTR("GAME "), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("VOID "), false);
+            break;
+    }
+
+    oled_set_cursor(0,9);
+    // Host Keyboard LED Status
+    led_t led_state = host_keyboard_led_state();
+    oled_write_ln_P(led_state.num_lock ? PSTR("NUM ") : PSTR(""), false);
+    oled_set_cursor(0,10);
+    oled_write_ln_P(led_state.caps_lock ? PSTR("CAP ") : PSTR(""), false);
+    // oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+    #ifdef CAPS_WORD_ENABLE
+        oled_set_cursor(0,11);
+        oled_write_ln_P(is_caps_word_on() ? PSTR("WRD ") : PSTR(""), false);
+    #endif
+
+    oled_set_cursor(0,14);
+    oled_render_keylog();
+}
+
+
+void print_layer_lines(void) {
         switch (get_highest_layer(layer_state)) {
             case _DEFAULT:
                 oled_write_ln_P(PSTR("0 1 2 3 4 5 6 7"), false);
@@ -337,6 +427,16 @@ bool oled_task_user(void) {
         #endif
         oled_write_P(PSTR("    "), false);
         oled_render_keylog();
+}
+
+bool oled_task_user(void) {
+    if (is_keyboard_master()) {
+        // print vertically
+        #if defined(VERTICAL) && VERTICAL == 1
+        print_layer_lines_vert();
+        #else
+        print_layer_lines();
+        #endif
     } else {
         oled_render_logo();
     }
