@@ -1,0 +1,24 @@
+ENCODER_MAP_ENABLE = yes
+
+CONVERT_TO = rp2040_ce
+BOOTLOADER = rp2040
+
+RGB_LIGHT_ENABLE = no
+# caps word
+CAPS_WORD_ENABLE = yes
+# repeat key
+REPEAT_KEY_ENABLE = yes
+
+RGB_MATRIX_SUPPORTED = yes
+RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_DRIVER = ws2812
+EXTRAKEY_ENABLE = yes
+MOUSEKEY_ENABLE = yes        # Mouse keys(+4700)
+NKRO_ENABLE = yes
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+
+# Enable WPM for OLED pet animation
+WPM_ENABLE = yes
+
+LTO_ENABLE = yes
