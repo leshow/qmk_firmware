@@ -43,6 +43,11 @@
 #define S_A LSFT_T(KC_A)
 #define S_D RSFT_T(KC_D)
 #define S_SCLN RSFT_T(KC_SCLN)
+// additional sofle keys
+#define TERM LGUI(KC_ENT)
+#define START LGUI(KC_X)
+#define PASS LGUI(KC_P)
+#define QUIT LGUI(KC_Q)
 
 // Each layer gets a name for readability
 enum layers {
@@ -60,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*
    * DEFAULT (ported from crkbd leshowmapmatrix)
    * ,-----------------------------------------.                    ,-----------------------------------------.
-   * | ___  |  1   |  2   |  3   |  4   |  5   |                    |  6   |  7   |  8   |  9   |  0   | ___  |
+   * | ESC  |  1   |  2   |  3   |  4   |  5   |                    |  6   |  7   |  8   |  9   |  0   | ESC  |
    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
    * |MEDIA |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -68,16 +73,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|  Mute |    | Pause |------+------+------+------+------+------|
    * |SC_LSP|LCTLZ |LALTX |   C  |MOUSE |   B  |-------|    |-------|   N  |   M  |   ,  |RALTD |RCTLS |SC_RSP|
    * `-----------------------------------------/       /     \      \-----------------------------------------'
-   *            | ____ | ____ |ESCCTL| NUM  | / S_SPC /       \S_BSPC\ |SGENT | ADJ  | ____ | ____ |
+   *            | PASS  | TERM |ESCCTL| NUM  | / S_SPC /       \S_BSPC\ |SGENT | ADJ  | START| QUIT |
    *            |      |      |      |      |/       /         \      \ |      |      |      |      |
    *            `----------------------------------'           '------''---------------------------'
    */
   [_DEFAULT] = LAYOUT(
-    KC_TRNS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
+    KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_ESC,
     MEDIA,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     GTAB,    S_A,     KC_S,    KC_D,    ARROW,   KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    S_SCLN,  GQUOT,
-    SC_LSPO, LCTLZ,   LALTX,   KC_C,    MOUSE,   KC_B,    KC_MPLY,   KC_MUTE, KC_N,    KC_M,    KC_COMM, RALTD,   RCTLS,   SC_RSPC,
-                      KC_TRNS, KC_TRNS, ESC_CTRL,NUM,     S_SPC,     S_BSPC,  SGENT,   ADJUST,  KC_TRNS, KC_TRNS
+    SC_LSPO, LCTLZ,   LALTX,   KC_C,    MOUSE,   KC_B,    KC_MPLY,   KC_MUTE,  KC_N,    KC_M,    KC_COMM, RALTD,   RCTLS,   SC_RSPC,
+                      PASS,    TERM,    ESC_CTRL,NUM,     S_SPC,     S_BSPC,   SGENT,   ADJUST,  START,  QUIT
   ),
 
   /*
@@ -153,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
     RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, RM_SPDU, KC_NO,                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    RM_NEXT, RM_HUED, RM_SATD, RM_VALD, RM_SPDD, RM_TOGG, KC_MPLY,   KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    RM_NEXT, RM_HUED, RM_SATD, RM_VALD, RM_SPDD, RM_TOGG, RM_TOGG,   RM_TOGG, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                       KC_TRNS, KC_TRNS, QWERTY,  KC_NO,   KC_NO,     KC_NO,   KC_NO,   KC_NO,   KC_TRNS, KC_TRNS
   ),
 
@@ -161,11 +166,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * QWERTY
    */
   [_QWERTY] = LAYOUT(
-    KC_TRNS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
+    KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    DEFAULT,
     KC_DEL,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DEFAULT,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, GQUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MPLY,   KC_MUTE, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                      KC_TRNS, KC_TRNS, KC_LCTL, KC_SPC,  KC_ENT,    KC_BSPC, KC_ENT,  KC_ESC,  KC_TRNS, KC_TRNS
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  KC_MPLY,   KC_MUTE, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                      KC_M, KC_LALT, KC_LCTL, KC_SPC,  KC_ENT,    KC_BSPC, KC_ENT,  KC_ESC,  KC_TRNS, KC_TRNS
   )
 };
 
@@ -177,7 +182,28 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_MOUSE]   = {ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_MEDIA]   = {ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_NUM]     = {ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_ADJUST]  = {ENCODER_CCW_CW(RM_SPDD, RM_SPDU), ENCODER_CCW_CW(RM_VALD, RM_VALU)},
+    [_ADJUST]  = {ENCODER_CCW_CW(RM_PREV, RM_NEXT), ENCODER_CCW_CW(RM_VALD, RM_VALU)},
     [_QWERTY]  = {ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 };
+#endif
+
+#ifdef CAPS_WORD_ENABLE
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_MINS:
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
 #endif
